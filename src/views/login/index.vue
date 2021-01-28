@@ -4,45 +4,56 @@
       background: `url(${bg}) repeat center`,
       backgroundSize: 'cover'
     }">
+    <div class="left_logo">
+      <img :src="logo2" alt="">
+      <p>2021年tcl高校科创节</p>
+    </div>
     <!-- 登录 -->
     <div v-if="isLogin && deviceType === 1" class="login_content">
-      <p class="login_txt">登录</p>
+      <div class="login_txt">
+        <img :src="logo2" alt="">
+      </div>
+      <p class="login_tips">欢迎登录</p>
       <div class="form_item">
-        <span class="label_title">手机号</span>
-        <el-input type="number" v-model="loginForm.phone" size="mini"></el-input>
+        <!-- <span class="label_title">手机号</span> -->
+        <el-input type="number" v-model="loginForm.phone" size="mini" placeholder="手机号" prefix-icon="el-icon-mobile-phone"></el-input>
       </div>
       <div v-if="!loginType" class="form_item">
-        <span class="label_title">密码</span>
-        <el-input type="password" v-model="loginForm.password" size="mini"></el-input>
+        <!-- <span class="label_title">密码</span> -->
+        <el-input type="password" v-model="loginForm.password" size="mini" placeholder="密码" prefix-icon="el-icon-lock"></el-input>
       </div>
       <div v-else class="form_item msg_input">
-        <span class="label_title">验证码</span>
-        <el-input v-model="loginForm.verificationCode" size="mini"></el-input>
+        <el-input v-model="loginForm.verificationCode" size="mini" placeholder="验证码" prefix-icon="el-icon-chat-line-square"></el-input>
         <span v-if="!showLoginCode" @click="sendLoginCode" class="send_msg">发送验证码</span>
         <span v-else class="send_msg">{{loginCode}}</span>
       </div>
       <div class="btn_contain">
-        <span @click="isLogin = false">注册</span>
-        <el-button v-if="!loginType" @click="passwordLogin">登录</el-button>
-        <el-button v-if="loginType" @click="codeLogin">登录</el-button>
-        <span @click="changeLoginType">
-          {{
-            !loginType ? '验证码登录' : '密码登录'
-          }}
-        </span>
+        <el-button class="btn_box" v-if="!loginType" @click="passwordLogin">登录</el-button>
+        <el-button class="btn_box" v-if="loginType" @click="codeLogin">登录</el-button>
+        <div class="operation_box">
+          <span @click="isLogin = false">注册</span>
+          <span @click="changeLoginType">
+            {{
+              !loginType ? '验证码登录' : '密码登录'
+            }}
+          </span>
+        </div>
       </div>
     </div>
     <!-- 注册 -->
     <div v-else class="registry_content">
-      <p class="registry_txt">
-        <span v-if="deviceType === 1" @click="isLogin = true">返回登录</span>
-        注册
-      </p>
+      <div class="registry_txt">
+        <img :src="logo2" alt="">
+      </div>
+      <!-- 返回登录 -->
+      <p class="back_login" v-if="deviceType === 1" @click="isLogin = true">返回登录</p>
+      <p class="registration_title">注册</p>
       <div class="login_form_contain">
         <el-form
           :model="registryForm"
           ref="registryForm"
           :rules="rules"
+          label-width="100px"
           >
           <!-- 姓名 -->
           <el-form-item
@@ -163,7 +174,7 @@
         </el-form>
       </div>
       <div class="btn_contain">
-        <el-button @click="submitRegistry" size="mini">注册</el-button>
+        <el-button class="register_btn" @click="submitRegistry" size="mini">注册</el-button>
       </div>
     </div>
     <!-- 抽奖 -->
@@ -182,7 +193,8 @@
 
 <script>
 import { mapActions } from 'vuex'
-import bg from '@/assets/bg.png'
+import bg from '@/assets/images/newPicture/login.png'
+import logo2 from '@/assets/images/newPicture/logo.png'
 export default {
   data () {
     return {
@@ -190,6 +202,7 @@ export default {
       prizeCover: require('../../assets/images/cover1.png'),
       prizeBack: require('../../assets/images/cover2.png'),
       bg,
+      logo2,
       showCount: false,
       count: 0,
       timer: null,
@@ -424,12 +437,30 @@ export default {
 
 <style lang="scss" scoped>
   .login_container{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
     width: 100%;
     height: 100vh;
+    .left_logo {
+      position: absolute;
+      left: 48px;
+      top: 16px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 145px;
+        height: 30px;
+      }
+      p {
+        margin-left: 32px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #FFFBFB;
+      }
+    }
     .reload {
       font-size: 12px;
       color: #409EFF;
@@ -437,7 +468,7 @@ export default {
     }
     .login_content {
       width: 400px;
-      padding: 20px;
+      // padding: 20px;
 
       border-radius: 8px;
       .login_top {
@@ -451,8 +482,22 @@ export default {
       }
       background-color: #fff;
       .login_txt {
-        text-align: center;
-        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        background-color: #48B7FF;
+        img {
+          width: 153px;
+          height: 32px;
+        }
+      }
+
+      .login_tips {
+        margin: 22px 0 26px 23px;
+        font-size: 24px;
+        font-weight: 400;
+        color: #48B7FF;
       }
       .form_item {
         display: flex;
@@ -475,41 +520,62 @@ export default {
         }
       }
       .btn_contain {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
         margin-top: 30px;
         padding: 0 20px;
-        span {
-          font-size: 12px;
-          color: #409EFF;
-          cursor: pointer;
+        .btn_box {
+          width: 360px;
+          height: 50px;
+          background: #48B7FF;
+          border-radius: 6px;
+
+          font-size: 22px;
+          font-weight: 400;
+          color: #FFFFFF;
+        }
+        .operation_box {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 56px;
+          span {
+            font-size: 16px;
+            color: #409EFF;
+            cursor: pointer;
+          }
         }
       }
     }
     .registry_content {
       width: 400px;
-      padding: 20px;
+      // padding: 20px;
 
       background-color: #fff;
       border-radius: 8px;
       .registry_txt {
-        position: relative;
-
-        margin-bottom: 10px;
-
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        background-color: #48B7FF;
+        img {
+          width: 153px;
+          height: 32px;
+        }
+      }
+      .back_login {
+        margin-top: 10px;
+        margin-left: 15px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #48B7FF;
+        cursor: pointer;
+      }
+      .registration_title {
+        margin-bottom: 28px;
         text-align: center;
         font-size: 18px;
-        span {
-          position: absolute;
-          left: 0;
-          top: 5px;
-
-          font-size: 12px;
-          color: #409EFF;
-          cursor: pointer;
-        }
+        font-weight: 400;
+        color: #333333;
       }
     }
     .prize_contain {
@@ -573,7 +639,21 @@ export default {
     }
     .btn_contain {
       margin-top: 15px;
+      margin-bottom: 28px;
       text-align: center;
+      .register_btn {
+        width: 140px;
+        height: 40px;
+        border: 1px solid #48B7FF;
+        background-color: #fff;
+        font-size: 20px;
+        font-weight: 400;
+        color: #000;
+        &:hover {
+          background-color: #48B7FF;
+          color: #FFFFFF;
+        }
+      }
     }
   }
   @media screen and (max-width: 500px) {
@@ -600,6 +680,7 @@ export default {
 </style>
 
 <style lang="scss">
+
   .el-input {
     width: 230px;
   }
@@ -608,9 +689,21 @@ export default {
       padding-right: 80px;
     }
   }
+  .login_container {
+    .login_content {
+      .el-input {
+        width: 360px;
+      }
+    }
+    .registry_content {
+      .el-input {
+        width: 240px;
+      }
+    }
+  }
   .login_form_contain {
     .el-form-item__label {
-      width: 80px;
+      color: #666666;
     }
     .el-form-item {
       position: relative;
@@ -618,8 +711,8 @@ export default {
       margin-bottom: 5px;
       .get_code {
         position: absolute;
-        right: 60px;
-        top: 2px;
+        right: 65px;
+        top: 0;
         width: 60px;
         text-align: center;
 

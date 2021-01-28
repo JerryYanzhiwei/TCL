@@ -134,7 +134,7 @@ export default {
     }
   },
   created () {
-    // this.getUserInfo()
+    this.getUserInfo()
   },
   methods: {
     ...mapActions(['GET_USER_INFO', 'PUT_USER_INFO', 'GET_DOWNLOAD_TEMPLATE']),
@@ -188,7 +188,7 @@ export default {
 
 <style lang="scss" scoped>
 .userInfo_container {
-  width: 100%;
+  width: 1526px;
   min-height: 100vh;
 
   // background-color: #f4f5f8;
