@@ -7,127 +7,130 @@
     <el-header class="main_header">
       <MainHeader></MainHeader>
     </el-header>
-    <div class="team_container">
-      <div class="fitler_contain">
-        <div>
-          <span>
-            <span class="white">队伍编号:</span>
-            <el-input v-model="hallData.teamNo" size="mini"></el-input>
-          </span>
-          <span>
-            <span class="white">省份:</span>
-            <el-select
-              size="mini"
-              v-model="hallData.province"
-              placeholder="">
-              <el-option
-                key="z"
-                label="全部"
-                value="">
-              </el-option>
-              <el-option
-                v-for="item in provinceData"
-                :key="item.code"
-                :label="item.city"
-                :value="item.code">
-              </el-option>
-            </el-select>
-          </span>
-          <span>
-            <span class="white">方向:</span>
-            <el-select
-              size="mini"
-              v-model="hallData.directionId"
-              placeholder="">
-              <el-option
-                :key="-1"
-                label="全部"
-                value="">
-              </el-option>
-              <el-option
-                v-for="item in directList"
-                :key="item.directionName"
-                :label="item.directionName"
-                :value="item.directionId">
-              </el-option>
-            </el-select>
-          </span>
+
+    <div class="bg_contianer">
+      <div class="team_container">
+        <div class="fitler_contain">
+          <div>
+            <span class="filter_item">
+              <span class="white">队伍编号:</span>
+              <el-input v-model="hallData.teamNo" size="mini"></el-input>
+            </span>
+            <span class="filter_item">
+              <span class="white">省份:</span>
+              <el-select
+                size="mini"
+                v-model="hallData.province"
+                placeholder="">
+                <el-option
+                  key="z"
+                  label="全部"
+                  value="">
+                </el-option>
+                <el-option
+                  v-for="item in provinceData"
+                  :key="item.code"
+                  :label="item.city"
+                  :value="item.code">
+                </el-option>
+              </el-select>
+            </span>
+            <span class="filter_item">
+              <span class="white">方向:</span>
+              <el-select
+                size="mini"
+                v-model="hallData.directionId"
+                placeholder="">
+                <el-option
+                  :key="-1"
+                  label="全部"
+                  value="">
+                </el-option>
+                <el-option
+                  v-for="item in directList"
+                  :key="item.directionName"
+                  :label="item.directionName"
+                  :value="item.directionId">
+                </el-option>
+              </el-select>
+            </span>
+          </div>
+          <div>
+            <el-button @click="search" size="mini">搜索</el-button>
+          </div>
         </div>
-        <div>
-          <el-button @click="search" size="mini">搜索</el-button>
+        <PublicTitle title="队伍列表" color="#fff" />
+        <div class="team_contain">
+          <div v-for="(item, index) in teamList" :key="index" class="team_item">
+            <div class="team_name">
+              <span class="teamNum">{{item.teamNo}}</span>
+              <span class="title">{{item.teamName}}</span>
+            </div>
+            <div class="item_contain">
+              <div class="item_detail">
+                <div class="title">队长: </div>
+                <div class="detail">{{item.captain}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">队长电话: </div>
+                <div class="detail">{{item.captainPhone}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">赛区: </div>
+                <div class="detail">{{getZone(item.matchZone)}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">省份: </div>
+                <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">作品方向: </div>
+                <div class="detail">{{item.opusDirection}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">作品课题: </div>
+                <div class="detail">{{item.subject}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">指导老师: </div>
+                <div class="detail">{{item.instructor}}</div>
+              </div>
+              <div class="item_detail">
+                <div class="title">队员招募需求: </div>
+                <el-tooltip class="item" effect="dark" :content="item.recruitmentDemand" placement="top-start">
+                  <div class="detail">{{item.recruitmentDemand}}</div>
+                </el-tooltip>
+              </div>
+              <div class="item_detail">
+                <div class="title">团队介绍: </div>
+                <el-tooltip class="item" effect="dark" :content="item.teamIntroduction" placement="top-start">
+                  <div class="detail">
+                    {{item.teamIntroduction}}
+                  </div>
+                </el-tooltip>
+              </div>
+            </div>
+            <div class="btn_contain">
+              <span class="limit_count">{{item.memberNum}}/5</span>
+              <el-button :disabled="item.applyState === 1 || item.applyState === 0" @click="joinTeam(item.teamNo)" size="mini">
+                {{
+                  item.applyState === 1 && '已加入' ||
+                  item.applyState === 0 && '申请中' ||
+                  '申请加入'
+                }}
+              </el-button>
+            </div>
+          </div>
         </div>
+        <el-pagination
+          v-if="pageData"
+          small
+          :page-size="pageData.pageSize"
+          @current-change="pageChange"
+          layout="prev, pager, next"
+          :total="pageData.recordNumber">
+        </el-pagination>
       </div>
-      <PublicTitle title="队伍列表" color="#fff" />
-      <div class="team_contain">
-        <div v-for="(item, index) in teamList" :key="index" class="team_item">
-          <div class="team_name">
-            <span class="teamNum">{{item.teamNo}}</span>
-            <span class="title">{{item.teamName}}</span>
-          </div>
-          <div class="item_contain">
-            <div class="item_detail">
-              <div class="title">队长: </div>
-              <div class="detail">{{item.captain}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">队长电话: </div>
-              <div class="detail">{{item.captainPhone}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">赛区: </div>
-              <div class="detail">{{getZone(item.matchZone)}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">省份: </div>
-              <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">作品方向: </div>
-              <div class="detail">{{item.opusDirection}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">作品课题: </div>
-              <div class="detail">{{item.subject}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">指导老师: </div>
-              <div class="detail">{{item.instructor}}</div>
-            </div>
-            <div class="item_detail">
-              <div class="title">队员招募需求: </div>
-              <el-tooltip class="item" effect="dark" :content="item.recruitmentDemand" placement="top-start">
-                <div class="detail">{{item.recruitmentDemand}}</div>
-              </el-tooltip>
-            </div>
-            <div class="item_detail">
-              <div class="title">团队介绍: </div>
-              <el-tooltip class="item" effect="dark" :content="item.teamIntroduction" placement="top-start">
-                <div class="detail">
-                  {{item.teamIntroduction}}
-                </div>
-              </el-tooltip>
-            </div>
-          </div>
-          <div class="btn_contain">
-            <span class="limit_count">{{item.memberNum}}/5</span>
-            <el-button :disabled="item.applyState === 1 || item.applyState === 0" @click="joinTeam(item.teamNo)" size="mini">
-              {{
-                item.applyState === 1 && '已加入' ||
-                item.applyState === 0 && '申请中' ||
-                '申请加入'
-              }}
-            </el-button>
-          </div>
-        </div>
-      </div>
-      <el-pagination
-        v-if="pageData"
-        small
-        :page-size="pageData.pageSize"
-        @current-change="pageChange"
-        layout="prev, pager, next"
-        :total="pageData.recordNumber">
-      </el-pagination>
     </div>
     <el-dialog
       width="30%"
@@ -153,7 +156,7 @@
 import { mapActions } from 'vuex'
 import PublicTitle from '@/components/public_title.vue'
 import MainHeader from '@/components/MainHeader.vue'
-import bg from '@/assets/bg.png'
+import bg from '@/assets/images/tcl/module_bg.png'
 
 import jsonData from '@/config/province.js'
 export default {
@@ -174,7 +177,24 @@ export default {
         teamNo: null,
         directionId: null
       },
-      teamList: [],
+      teamList: [
+        {
+          applyState: null,
+          captain: '游永华',
+          captainPhone: '15012799747',
+          categoryName: 'xx1',
+          instructor: 'xxx',
+          matchZone: '1001',
+          memberNum: 1,
+          opusDirection: 'xxx1',
+          province: '1',
+          recruitmentDemand: 'xxxx',
+          subject: 'xxxxx',
+          teamIntroduction: 'sdfdsfd',
+          teamName: 'Testing',
+          teamNo: '0001'
+        }
+      ],
       joinData: {
         leaveMesseges: '',
         teamNo: ''
@@ -185,9 +205,9 @@ export default {
     }
   },
   created () {
-    this.getHallData()
-    this.getProvinces()
-    this.getDirect()
+    // this.getHallData()
+    // this.getProvinces()
+    // this.getDirect()
   },
   methods: {
     ...mapActions(['GET_HALL_DATA', 'POST_APPLY_TEAM', 'GET_DIRECTION']),
@@ -261,22 +281,43 @@ export default {
 
 <style lang="scss" scoped>
   .teamhall_container {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
     min-height: 100vh;
 
     background-color: #f4f5f8;
     .main_header {
       background-color: $bg_color;
     }
-    .team_container {
-      width: 1200px;
+    .bg_contianer {
+      width: 95vw;
+      height: calc(100vh - 120px);
       margin: 0 auto;
-      padding-top: 90px;
+      margin-top: 60px;
+
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    .team_container {
+      width: 1024px;
+      margin: 0 auto;
+      padding-top: 30px;
       .fitler_contain {
         display: flex;
         justify-content: space-between;
 
         margin-bottom: 30px;
+        .filter_item {
+          margin-right: 20px;
+          .white {
+            margin-right: 10px;
+
+            color: #333;
+          }
+        }
       }
       .team_contain {
         display: flex;
@@ -376,6 +417,13 @@ export default {
 </style>
 
 <style lang="scss">
+  .team_container {
+    .fitler_contain {
+      .el-input {
+        width: 200px;
+      }
+    }
+  }
   .el-tooltip__popper {
     max-width: 300px;
   }

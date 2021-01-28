@@ -9,10 +9,12 @@
     </el-header>
     <div class="main_contain">
       <div @click="canCreate" class="module_item">
-        创建队伍
+        <img :src="teamLogo" alt="">
+        <span class="tcl_button">创建队伍</span>
       </div>
       <div @click="$router.push('/teamhall')" class="module_item">
-        加入队伍
+        <img :src="teamLogo" alt="">
+        <span class="tcl_button">加入队伍</span>
       </div>
     </div>
     <el-dialog
@@ -40,6 +42,7 @@
           label="赛区"
           >
           <el-select
+            size="mini"
             v-model="formData.matchZone"
             @change="selecZone"
             placeholder="请选择赛区">
@@ -55,7 +58,10 @@
           prop="province"
           label="省份"
           >
-          <el-select v-model="formData.province" placeholder="请选择">
+          <el-select
+            size="mini"
+            v-model="formData.province"
+            placeholder="请选择">
             <el-option
               v-for="item in provinceArr"
               :key="item.value"
@@ -69,6 +75,7 @@
           label="分类"
           >
           <el-select
+            size="mini"
             v-model="formData.catagory"
             @change="selecClass"
             placeholder="请选择作品方向">
@@ -85,6 +92,7 @@
           label="作品方向"
           >
           <el-select
+            size="mini"
             v-model="formData.opusDirection"
             @change="selecDirect"
             placeholder="请选择作品方向">
@@ -101,6 +109,7 @@
           label="作品课题"
           >
           <el-select
+            size="mini"
             v-model="formData.subject"
             placeholder="请选择作品课题">
             <el-option
@@ -128,12 +137,14 @@
         <el-form-item
           prop="recruitmentDemand"
           label="队员招募需求"
+          class="line_block"
           >
           <el-input v-model="formData.recruitmentDemand" resize="none" rows="3" size="mini" type="textarea"></el-input>
         </el-form-item>
         <el-form-item
           prop="teamIntroduction"
           label="团队介绍"
+          class="line_block"
           >
           <el-input v-model="formData.teamIntroduction" resize="none" rows="3" size="mini" type="textarea"></el-input>
         </el-form-item>
@@ -148,7 +159,8 @@
 <script>
 import MainHeader from '@/components/MainHeader.vue'
 import jsonData from '@/config/province.js'
-import bg from '@/assets/bg.png'
+import bg from '@/assets/images/tcl/module_bg.png'
+import teamLogo from '@/assets/images/tcl/module_team.png'
 
 import { mapActions } from 'vuex'
 export default {
@@ -158,6 +170,7 @@ export default {
   data () {
     return {
       bg,
+      teamLogo,
       dialogVisible: false,
       matchArr: jsonData,
       provinceArr: [],
@@ -268,26 +281,33 @@ export default {
       justify-content: space-between;
       align-items: center;
 
-      width: 1200px;
+      width: 1024px;
       height: calc(100vh - 60px);
       margin: 0 auto;
       .module_item {
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
 
-        width: 400px;
-        height: 300px;
+        width: 333px;
+        height: 333px;
 
-        background-color: $card_bg_color;
         color: #fff;
         transition: all .2s linear;
         border-radius: 8px;
         cursor: pointer;
         font-size: 18px;
         font-weight: bold;
+        background: linear-gradient(0deg, #48B7FF 0%, #0043BD 100%);
+        border-radius: 20px;
+        img {
+          width: 118px;
+          height: 93px;
+          margin-bottom: 42px;
+        }
         &:hover {
-          transform: translate3d(0, -2px, 0);
+          transform: translate3d(0, -3px, 0);
           box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
       }
@@ -296,7 +316,22 @@ export default {
 </style>
 
 <style lang="scss">
+.module_select_container {
+  .el-dialog {
+    width: 577px!important;
+    border-radius: 10px;
+    margin-top: 5vh!important;
+  }
   .el-dialog__body {
     padding-bottom: 0;
+    .el-form-item__label {
+      width: 115px!important;
+    }
+    .line_block .el-form-item__content {
+      display: inline-block;
+      margin-left: 0px!important;
+      width: 400px!important;
+    }
   }
+}
 </style>

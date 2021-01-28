@@ -8,3 +8,18 @@ $card_bg_color: #0e709D;
 .white {
   color: #fff;
 }
+.main_header {
+  display: flex;
+  justify-content: center;
+
+  background-color: #48B7FF!important;
+}
+
+.tcl_button {
+  padding: 10px 45px;
+
+  color: #1E73D8;
+  font-size: 16px;
+  border-radius: 20px;
+  background-color: #fff;
+}

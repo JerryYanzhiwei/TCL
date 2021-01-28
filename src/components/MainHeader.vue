@@ -1,7 +1,8 @@
 <template>
   <div class="main_header_container">
     <div @click="toModule" class="left_txt">
-      TCL高校科创节
+      <img :src="logo" alt="">
+      2021年TCL高校科创节
     </div>
     <div class="right">
       <span class="btn" @click="$router.push('/main')">{{userData.name}}</span>
@@ -29,7 +30,7 @@ export default {
   },
   data () {
     return {
-      logo: require('../assets/images/logo.png')
+      logo: require('@/assets/images/tcl/logo.png')
     }
   },
   methods: {
@@ -50,14 +51,16 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+  width: 1024px;
   .left_txt {
     color: #fff;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
     img {
-      width: 50px;
-      height: 50px;
+      width: 145px;
+      height: auto;
+      margin-right: 32px;
     }
   }
   .right {
