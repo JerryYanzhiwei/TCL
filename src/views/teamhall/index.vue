@@ -10,6 +10,7 @@
 
     <div class="bg_contianer">
       <div class="team_container">
+        <!-- 过滤条件 -->
         <div class="fitler_contain">
           <div>
             <span class="filter_item">
@@ -59,6 +60,7 @@
             <el-button @click="search" size="mini">搜索</el-button>
           </div>
         </div>
+
         <PublicTitle title="队伍列表" color="#fff" />
         <div class="team_contain">
           <div v-for="(item, index) in teamList" :key="index" class="team_item">
@@ -111,7 +113,9 @@
               </div>
             </div>
             <div class="btn_contain">
-              <span class="limit_count">{{item.memberNum}}/5</span>
+              <span class="limit_count">
+                <img :src="people" v-for="count in item.memberNum" :key="count" alt="">
+              </span>
               <el-button :disabled="item.applyState === 1 || item.applyState === 0" @click="joinTeam(item.teamNo)" size="mini">
                 {{
                   item.applyState === 1 && '已加入' ||
@@ -157,6 +161,7 @@ import { mapActions } from 'vuex'
 import PublicTitle from '@/components/public_title.vue'
 import MainHeader from '@/components/MainHeader.vue'
 import bg from '@/assets/images/tcl/module_bg.png'
+import people from '@/assets/images/tcl/people.png'
 
 import jsonData from '@/config/province.js'
 export default {
@@ -167,6 +172,7 @@ export default {
   data () {
     return {
       bg,
+      people,
       // 弹框是否可见
       dialogVisible: false,
       // hall data
@@ -205,9 +211,9 @@ export default {
     }
   },
   created () {
-    // this.getHallData()
-    // this.getProvinces()
-    // this.getDirect()
+    this.getHallData()
+    this.getProvinces()
+    this.getDirect()
   },
   methods: {
     ...mapActions(['GET_HALL_DATA', 'POST_APPLY_TEAM', 'GET_DIRECTION']),
@@ -323,15 +329,16 @@ export default {
         display: flex;
         flex-wrap: wrap;
         .team_item {
-          background-color: $card_bg_color;
+          // background-color: #333;
+          background: radial-gradient(circle, rgba(0, 80, 213, 1) 20%, rgba(1, 68, 190, .7) 100%, rgba(0, 80, 213, 1) 100%);
           width: 31%;
           margin-top: 30px;
           overflow: hidden;
           margin-left: 3.3%;
 
           border-radius: 10px;
+          border-top-left-radius: 0;
           transition: all .2s linear;
-          border: 2px solid $border_color;
           &:nth-child(3n + 1) {
             margin-left: 0;
           }
@@ -345,20 +352,29 @@ export default {
             height: 40px;
             line-height: 40px;
             padding: 0 20px;
+            padding-left: 0;
 
             text-align: center;
             font-size: 16px;
             font-weight: bold;
+
+            background: linear-gradient(0deg, #48B7FF 0%, #48B7FF 100%);
             .teamNum {
               position: absolute;
-              left: 20px;
+              left: 0px;
+              padding: 0 30px;
+              margin-left: 2px;
 
-              font-size: 12px;
-              font-weight: normal;
-              color: #fff;
+              font-size: 16px;
+              font-weight: bold;
+              height: 100%;
+              background-color: #fff;
+              color: #0050D5;
             }
             .title {
-              color: $border_color;
+              font-size: 16px;
+              font-weight: bold;
+              color: #fff;
             }
           }
           .item_contain {
@@ -366,18 +382,16 @@ export default {
 
             .item_detail {
               display: flex;
-              margin-bottom: 10px;
+              margin-top: 10px;
 
               font-size: 14px;
               color: #fff;
+              &:last-child {
+                margin-bottom: 10px;
+              }
               .title {
-                width: 20%;
                 padding-right: 5px;
 
-                text-align: right;
-
-                overflow: hidden;
-                text-overflow: ellipsis;
                 white-space: nowrap;
               }
               .detail {
@@ -397,8 +411,7 @@ export default {
             height: 50px;
             padding: 0 30px;
 
-            // background: #dc1e32;
-            border-top: 1px solid $border_color;
+            border-top: 1px solid #fff;
             color: #fff;
             font-size: 14px;
             span {
@@ -407,6 +420,9 @@ export default {
               &.limit_count {
                 font-weight: bold;
                 color: #fff;
+                img {
+                  margin-right: 5px;
+                }
               }
             }
           }
