@@ -149,8 +149,7 @@
         v-model="joinData.leaveMesseges"
         ></el-input>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="danger" @click="submitApply">确 定</el-button>
+        <el-button type="primary" size="mini" @click="submitApply">提交</el-button>
       </span>
     </el-dialog>
   </div>
@@ -183,24 +182,7 @@ export default {
         teamNo: null,
         directionId: null
       },
-      teamList: [
-        {
-          applyState: null,
-          captain: '游永华',
-          captainPhone: '15012799747',
-          categoryName: 'xx1',
-          instructor: 'xxx',
-          matchZone: '1001',
-          memberNum: 1,
-          opusDirection: 'xxx1',
-          province: '1',
-          recruitmentDemand: 'xxxx',
-          subject: 'xxxxx',
-          teamIntroduction: 'sdfdsfd',
-          teamName: 'Testing',
-          teamNo: '0001'
-        }
-      ],
+      teamList: [],
       joinData: {
         leaveMesseges: '',
         teamNo: ''
@@ -433,14 +415,24 @@ export default {
 </style>
 
 <style lang="scss">
-  .team_container {
-    .fitler_contain {
-      .el-input {
-        width: 200px;
+  .teamhall_container {
+    .team_container {
+      .fitler_contain {
+        .el-input {
+          width: 200px;
+        }
+      }
+      .el-tooltip__popper {
+        max-width: 300px;
       }
     }
-  }
-  .el-tooltip__popper {
-    max-width: 300px;
+    .el-dialog {
+      width: 800px!important;
+      height: 400px!important;
+      border-radius: 10px;
+      .el-textarea__inner {
+        height: 219px;
+      }
+    }
   }
 </style>
