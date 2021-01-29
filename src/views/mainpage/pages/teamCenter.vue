@@ -10,46 +10,52 @@
         v-for="(item, index) in joinedData" :key="index"
         class="team_item">
         <div class="team_name">
-          <i class="iconfont icon-tuandui"></i>
-          <b class="name">{{item.teamName}}</b>
-          <span>{{item.teamNo}}</span>
+          <div class="nubmer_box">
+            {{item.teamNo}}
+          </div>
+          <div class="name_box">
+            {{item.teamName}}
+          </div>
         </div>
         <div class="item_contain">
           <div class="item_detail">
-            <div class="title">队长: </div>
+            <div class="title">队长：</div>
             <div class="detail">{{item.captain}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">电话: </div>
+            <div class="title">电话：</div>
             <div class="detail">{{item.captainPhone}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">赛区: </div>
+            <div class="title">赛区：</div>
             <div class="detail">{{getZone(item.matchZone)}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">省份: </div>
+            <div class="title">省份：</div>
             <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">方向: </div>
+            <div class="title">方向：</div>
             <div class="detail">{{item.opusDirection}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">课题: </div>
+            <div class="title">课题：</div>
             <div class="detail">{{item.subject}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">队员招募需求: </div>
+            <div class="title">队员招募需求：</div>
             <div class="detail">{{item.recruitmentDemand}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">团队介绍: </div>
+            <div class="title">团队介绍：</div>
             <el-tooltip class="item" effect="dark" :content="item.teamIntroduction" placement="top-start">
               <div class="detail">
                 {{item.teamIntroduction}}
               </div>
             </el-tooltip>
+          </div>
+          <div class="footer_box">
+            <img :src="xiaoren" alt="">
           </div>
         </div>
       </div>
@@ -69,52 +75,60 @@
       <div
         v-for="(item, index) in applyList" :key="index"
         class="team_item apply_contain">
-        <i v-if="item.applyState === 2" class="apply_state">已拒绝</i>
-        <i v-if="item.applyState === 0" class="apply_state">申请中</i>
         <div class="team_name">
-          <i class="iconfont icon-tuandui"></i>
-          <b class="name">{{item.teamName}}</b>
-          <span>{{item.teamNo}}</span>
+          <div class="nubmer_box">
+            {{item.teamNo}}
+          </div>
+          <div class="name_box">
+            {{item.teamName}}
+          </div>
         </div>
         <div class="item_contain">
           <div class="item_detail">
-            <div class="title">队长: </div>
+            <div class="title">队长：</div>
             <div class="detail">{{item.captain}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">电话: </div>
+            <div class="title">电话：</div>
             <div class="detail">{{item.captainPhone}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">赛区: </div>
+            <div class="title">赛区：</div>
             <div class="detail">{{getZone(item.matchZone)}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">省份: </div>
+            <div class="title">省份：</div>
             <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">方向: </div>
+            <div class="title">方向：</div>
             <div class="detail">{{item.opusDirection}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">课题: </div>
+            <div class="title">课题：</div>
             <div class="detail">{{item.subject}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">队员招募需求: </div>
+            <div class="title">队员招募需求：</div>
             <div class="detail">{{item.recruitmentDemand}}</div>
           </div>
           <div class="item_detail">
-            <div class="title">团队介绍: </div>
+            <div class="title">团队介绍：</div>
             <el-tooltip class="item" effect="dark" :content="item.teamIntroduction" placement="top-start">
               <div class="detail">
                 {{item.teamIntroduction}}
               </div>
             </el-tooltip>
           </div>
+          <div class="footer_box">
+            <img :src="xiaoren" alt="">
+          </div>
+          <div class="btn_contain" v-if="item.applyState === 0">
+            <p v-if="item.applyState === 0" class="apply_state">申请中</p>
+          </div>
           <div v-if="item.applyState === 2" class="btn_contain">
-            <el-button @click="reJoin(item)" type="danger" size="mini">重新申请</el-button>
+            <p v-if="item.applyState === 2" class="apply_state">已拒绝</p>
+            <el-button @click="reJoin(item)" class="apply_btn" size="mini">重新申请</el-button>
           </div>
         </div>
       </div>
@@ -148,7 +162,7 @@
 
 <script>
 import PublicTitle from '@/components/public_title.vue'
-
+import xiaoren from '@/assets/images/newPicture/xiaoren.png'
 import { mapActions } from 'vuex'
 export default {
   components: {
@@ -156,6 +170,7 @@ export default {
   },
   data () {
     return {
+      xiaoren,
       joinedData: [],
       applyList: [],
       joinPage: {},
@@ -237,10 +252,14 @@ export default {
 
 <style lang="scss" scoped>
   .team_cener_container {
+    width: 15.29rem;
+    border-radius: .1rem;
+    background-color: #fff;
     .no_data {
       width: 100%;
       text-align: center;
-      padding: 20px 0;
+      padding: .2rem 0;
+      font-size: .16rem;
     }
     .iconfont {
       font-size: 18px;
@@ -248,70 +267,84 @@ export default {
     .team_contain {
       display: flex;
       flex-wrap: wrap;
+      padding: 0 .24rem;
+      margin-top: -.2rem;
       &.added_contain {
         margin-bottom: 30px;
       }
       .team_item {
-        width: 31%;
-        padding: 20px 0;
-        padding-top: 10px;
-        margin-top: 30px;
+        position: relative;
+        width:4.01rem;
+        margin-bottom: .3rem;
         overflow: hidden;
-        margin-left: 3.3%;
+        margin-left: .38rem;
 
-        background-color: $card_bg_color;
-        border: 2px solid $border_color;
-        border-radius: 10px;
+        background: radial-gradient(circle, rgba(0, 80, 213, 1) 20%, rgba(1, 68, 190, .7) 100%, rgba(0, 80, 213, 1) 100%);
+        border-radius: .2rem;
+        border-top-left-radius: 0;
+        transition: all .2s linear;
+        border: 1px solid #0050D5;
         cursor: pointer;
         &.apply_contain {
           position: relative;
           cursor: default;
 
           .apply_state {
-            position: absolute;
-            top: 10px;
-            left: 10px;
             color: #fff;
           }
         }
         transition: all .2s linear;
-        &:nth-child(3n + 1) {
+        &:nth-child(4n + 1) {
           margin-left: 0;
         }
         &:hover {
-          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          box-shadow: 0 .15rem .3rem rgba(0,0,0,.1);
           transform: translate3d(0,-2px,0);
         }
         .team_name {
-          height: 40px;
-          line-height: 40px;
-
-          text-align: center;
-          font-size: 16px;
-          font-weight: bold;
-          i {
-            color: #fff;
+          display: flex;
+          height: .35rem;
+          font-size: 0.14rem;
+          font-weight: 400;
+          color: #FFFFFF;
+          margin-bottom: .13rem;
+          .nubmer_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.02rem;
+            border-right: 1px solid #0064DD;
+            font-size: 0.16rem;
+            font-weight: bold;
+            color: #0050D5;
+            background: #fff;
           }
-          span {
-            font-size: 12px;
-            font-weight: normal;
-            color: #fff;
+          .name_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(1, 68, 190, 0), rgba(71, 182, 254, 0));
+            font-size: 0.16rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: #48B7FF;
+            width: 3.03rem;
           }
           .name {
             color: $border_color;
           }
         }
         .item_contain {
-          padding: 0 20px;
-
           .item_detail {
             display: flex;
-            margin-bottom: 15px;
-
-            font-size: 14px;
+            padding: 0 .22rem;
+            padding-bottom: .12rem;
+            font-size: .14rem;
             color: #fff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             .title {
-              width: 30%;
               padding-right: 5px;
 
               text-align: right;
@@ -337,8 +370,34 @@ export default {
             }
           }
 
+          .footer_box {
+            display: flex;
+            align-items: center;
+            margin-top: .11rem;
+            height: .5rem;
+            padding: 0 .22rem;
+            border-top: 1px solid #FFFFFF;
+            img {
+              width: .11rem;
+              height: .31rem;
+            }
+          }
+
           .btn_contain {
-            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 .22rem;
+            padding-bottom: .1rem;
+            p {
+              margin-right: .1rem;
+              font-size: 0.16rem;
+            }
+            .apply_btn {
+              background: #48B7FF;
+              color: #fff;
+              font-size: 0.16rem;
+            }
           }
         }
       }

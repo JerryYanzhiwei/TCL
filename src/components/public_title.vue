@@ -24,11 +24,16 @@ export default {
 <style lang="scss" scoped>
   .public_title {
     position: relative;
+    height: .78rem;
+    display: flex;
+    align-items: center;
+    padding-left: .24rem;
 
-    font-size: 18px;
+    font-size: .18rem;
     span {
-      color: #333;
-      padding-bottom: 5px;
+      font-weight: bold;
+      color: #333333;
+      padding-bottom: 2px;
       border-bottom: 2px solid #F56C6C;
     }
     // font-weight: bold;
