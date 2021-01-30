@@ -72,7 +72,7 @@
                 <template v-else>
                   <span>简历</span>
                   <b class="file_name">{{this.fileName}}</b>
-                  <i @click="fileName = ''" class="del_btn">x</i>
+                  <i style="marginLeft: 10px" @click="clickUploadBtn" class="el-icon-upload2"></i>
                   <!-- <i class="iconfont icon-xiazai1 download_btn"
                     @click="download(item.attachmentId)"></i> -->
                 </template>
@@ -185,8 +185,9 @@ export default {
     // 上传简历
     async fileChange (e) {
       const file = e.target.files[0]
-      let type = file.type.split('.')
+      let type = file.name.split('.')
       type = type[type.length - 1]
+      console.log(type)
       if (this.limitType.indexOf(type) === -1) {
         this.$messge.error('文件格式错误, 请重新上传')
         this.$refs.file0.value = ''
@@ -250,6 +251,12 @@ export default {
   padding-bottom: .38rem;
 
   // background-color: #f4f5f8;
+  .el-icon-upload2 {
+    cursor: pointer;
+    &:hover {
+      color: #1989fa;
+    }
+  }
   .del_btn {
     margin-left: 20px;
     cursor: pointer;
