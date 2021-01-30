@@ -13,19 +13,19 @@ export default {
       return reg.test(str)
     },
     getUser () {
-      // const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
-      const userInfo = {
-        accountId: 2037,
-        captainFlag: true,
-        described: '',
-        email: 'fdsf@fds.com',
-        gender: 1,
-        grade: '大二',
-        name: 'Jerry',
-        phone: '13428722221',
-        profession: '物流',
-        school: '深大'
-      }
+      const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+      // const userInfo = {
+      //   accountId: 2037,
+      //   captainFlag: true,
+      //   described: '',
+      //   email: 'fdsf@fds.com',
+      //   gender: 1,
+      //   grade: '大二',
+      //   name: 'Jerry',
+      //   phone: '13428722221',
+      //   profession: '物流',
+      //   school: '深大'
+      // }
       return userInfo
     },
     getZone (code) {

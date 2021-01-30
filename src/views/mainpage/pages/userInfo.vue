@@ -143,28 +143,28 @@ export default {
   },
   data () {
     return {
-      // userForm: {
-      //   accountId: '',
-      //   name: '',
-      //   phone: '',
-      //   email: '',
-      //   school: '',
-      //   profession: '',
-      //   grade: '',
-      //   described: ''
-      // },
       userForm: {
-        accountId: 2037,
-        captainFlag: true,
-        described: '',
-        email: 'fdsf@fds.com',
-        gender: 1,
-        grade: '大二',
-        name: 'Jerry',
-        phone: '13428722221',
-        profession: '物流',
-        school: '深大'
+        accountId: '',
+        name: '',
+        phone: '',
+        email: '',
+        school: '',
+        profession: '',
+        grade: '',
+        described: ''
       },
+      // userForm: {
+      //   accountId: 2037,
+      //   captainFlag: true,
+      //   described: '',
+      //   email: 'fdsf@fds.com',
+      //   gender: 1,
+      //   grade: '大二',
+      //   name: 'Jerry',
+      //   phone: '13428722221',
+      //   profession: '物流',
+      //   school: '深大'
+      // },
       gender: '',
       dialogVisible: false,
       attachmentId: null,
@@ -173,7 +173,7 @@ export default {
     }
   },
   created () {
-    // this.getUserInfo()
+    this.getUserInfo()
   },
   methods: {
     ...mapActions(['GET_USER_INFO', 'PUT_USER_INFO', 'GET_DOWNLOAD_TEMPLATE']),
