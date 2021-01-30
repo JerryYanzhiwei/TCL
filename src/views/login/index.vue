@@ -595,7 +595,8 @@ export default {
         cursor: pointer;
       }
       .registration_title {
-        margin-bottom: 28px;
+        padding: 28px;
+        padding-top: 0;
         text-align: center;
         font-size: 18px;
         font-weight: 400;
@@ -691,12 +692,20 @@ export default {
       box-shadow: unset;
       border-radius: 0;
     }
-    .registry_content .el-input--mini {
-      width: 70%;
+    .login_container {
+      .left_logo {
+        display: none;
+      }
+      .registration_title {
+        padding: 20px !important;
+        padding-top: 20px !important;
+      }
     }
+
     .login_form_contain .el-form-item .get_code {
       right: 6%;
     }
+
     .login_container .prize_contain .prize_items .prize_detail {
       width: 40%;
     }
@@ -748,5 +757,18 @@ export default {
   }
   .el-form-item__error {
     display: none;
+  }
+
+  @media screen and (max-width: 500px) {
+    .login_container {
+      .registry_content {
+        .el-form-item {
+          padding-right: 8%;
+          .el-input,.el-select {
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 </style>
