@@ -217,7 +217,7 @@ export default {
     }
   },
   created () {
-    // this.getUserInfo()
+    this.getUserInfo()
   },
   methods: {
     ...mapActions(['GET_USER_INFO', 'PUT_USER_INFO', 'GET_DOWNLOAD_TEMPLATE', 'PUT_RESUME']),
