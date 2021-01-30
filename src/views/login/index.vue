@@ -156,21 +156,33 @@
           <el-form-item
             prop="educational"
             label="学历">
-            <el-input
-              v-model="registryForm.educational"
+            <el-select
               size="mini"
-              >
-            </el-input>
+              v-model="registryForm.educational"
+              placeholder="">
+              <el-option
+                v-for="item in educationalArr"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
           </el-form-item>
           <!-- 毕业时间 -->
           <el-form-item
             prop="educationalYear"
             label="毕业时间">
-            <el-input
-              v-model="registryForm.educationalYear"
+            <el-select
               size="mini"
-              >
-            </el-input>
+              v-model="registryForm.educationalYear"
+              placeholder="">
+              <el-option
+                v-for="item in educationalYearArr"
+                :key="item"
+                :label="item"
+                :value="item">
+              </el-option>
+            </el-select>
           </el-form-item>
         </el-form>
       </div>
@@ -248,6 +260,12 @@ export default {
           label: '女',
           value: 2
         }
+      ],
+      educationalArr: [
+        '专科', '本科', '硕士', '博士', '其他'
+      ],
+      educationalYearArr: [
+        '2021年', '2022年', '2023年', '2024年', '2024年之后'
       ]
     }
   },

@@ -169,21 +169,37 @@ export default {
       dialogVisible: false,
       attachmentId: null,
       checked: false,
-      fileName: ''
+      fileName: '',
+      limitType: ['doc', 'docx', 'pdf', 'png']
     }
   },
   created () {
     this.getUserInfo()
   },
   methods: {
-    ...mapActions(['GET_USER_INFO', 'PUT_USER_INFO', 'GET_DOWNLOAD_TEMPLATE']),
+    ...mapActions(['GET_USER_INFO', 'PUT_USER_INFO', 'GET_DOWNLOAD_TEMPLATE', 'PUT_RESUME']),
     clickUploadBtn () {
       const dom = this.$refs.file0
       dom && dom.click()
     },
-    fileChange (e) {
+    // 上传简历
+    async fileChange (e) {
       const file = e.target.files[0]
-      this.fileName = file.name
+      let type = file.type.split('.')
+      type = type[type.length - 1]
+      if (this.limitType.indexOf(type) === -1) {
+        this.$messge.error('文件格式错误, 请重新上传')
+        this.$refs.file0.value = ''
+        return
+      }
+      const formData = new FormData()
+      formData.append('resumeFile', file)
+      const res = await this.PUT_RESUME(formData)
+      if (res.result === '0') {
+        this.fileName = file.name
+        this.$message.success(res.msg)
+        this.$refs.file0.value = ''
+      }
     },
     modelDown () {
       if (!this.checked) {
