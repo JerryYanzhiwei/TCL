@@ -44,6 +44,11 @@ export default new Vuex.Store({
       const { data: res } = await axios.put('/user/account/profile', data)
       return res
     },
+    // 上传简历
+    async PUT_RESUME ({ commit }, data = {}) {
+      const { data: res } = await instance.put('/user/account/upload/resume', data)
+      return res
+    },
     /**
      * 队伍
      */
