@@ -185,11 +185,11 @@ export default {
     // 上传简历
     async fileChange (e) {
       const file = e.target.files[0]
+      console.log(file)
       let type = file.name.split('.')
       type = type[type.length - 1]
-      console.log(type)
       if (this.limitType.indexOf(type) === -1) {
-        this.$messge.error('文件格式错误, 请重新上传')
+        this.$message.error('文件格式错误, 请重新上传')
         this.$refs.file0.value = ''
         return
       }
