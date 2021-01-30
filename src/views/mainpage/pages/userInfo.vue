@@ -2,57 +2,86 @@
   <div class="userInfo_container">
     <PublicTitle title="个人信息"/>
     <div class="user_contain">
-      <div class="user_top">
-        <div>
-          <span>姓名: </span>
-          <el-input v-model="userForm.name" size="mini"></el-input>
-        </div>
-        <div>
-          <span>性别: </span>
-          <el-input disabled v-model="gender" size="mini"></el-input>
-        </div>
-        <div>
-          <span>手机: </span>
-          <el-input disabled="" v-model="userForm.phone" size="mini"></el-input>
-        </div>
-        <div>
-          <span>邮箱: </span>
-          <el-input v-model="userForm.email" size="mini"></el-input>
-        </div>
-        <div>
-          <span>学校: </span>
-          <el-input v-model="userForm.school" size="mini"></el-input>
-        </div>
-        <div>
-          <span>专业: </span>
-          <el-input v-model="userForm.profession" size="mini"></el-input>
-        </div>
-        <div>
-          <span>年级: </span>
-          <el-input v-model="userForm.grade" size="mini"></el-input>
-        </div>
-        <div class="files">
-          <template v-if="!this.fileName">
-            <span>简历:</span>
-            <PublicButton @clickHandle="clickUploadBtn">上传</PublicButton>
-            <p>文件格式: WORD/PDF/PNG等</p>
-            <input type="file" v-show="false" :multiple="false" ref="file0" @change="fileChange">
-          </template>
-          <template v-else>
-            <span>简历:</span>
-            <b class="file_name">{{this.fileName}}</b>
-            <i @click="fileName = ''" class="del_btn">x</i>
-            <!-- <i class="iconfont icon-xiazai1 download_btn"
-              @click="download(item.attachmentId)"></i> -->
-          </template>
-        </div>
-        <div class="">
-          <span>备注:</span>
-          <el-input v-model="userForm.described" rows="3" resize="none" type="textarea"></el-input>
-        </div>
-      </div>
+        <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td>
+              <div class="item">
+                <span>姓名</span>
+                <el-input v-model="userForm.name" size="mini"></el-input>
+              </div>
+            </td>
+            <td>
+              <div class="item">
+                <span>年级</span>
+                <el-input v-model="userForm.grade" size="mini"></el-input>
+              </div>
+            </td>
+            <td>
+              <div class="item">
+                <span>性别</span>
+                <el-input disabled v-model="gender" size="mini"></el-input>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="item">
+                <span>手机</span>
+                <el-input disabled="" v-model="userForm.phone" size="mini"></el-input>
+              </div>
+            </td>
+            <td rowspan="2">
+              <div class="item">
+                <span>备注</span>
+                <el-input v-model="userForm.described" resize="none" type="textarea"></el-input>
+              </div>
+            </td>
+            <td>
+              <div class="item">
+                <span>邮箱</span>
+                <el-input v-model="userForm.email" size="mini"></el-input>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="item">
+                <span>学校</span>
+                <el-input v-model="userForm.school" size="mini"></el-input>
+              </div>
+            </td>
+            <td>
+              <div class="item">
+                <span>专业</span>
+                <el-input v-model="userForm.profession" size="mini"></el-input>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td>
+              <div class="files item">
+                <template v-if="!this.fileName">
+                  <span>简历</span>
+                  <div style="width: 100%">
+                    <el-button class="el_btn" @click="clickUploadBtn">上传</el-button>
+                    <p class="tips">文件格式: WORD/PDF/PNG等</p>
+                    <input type="file" v-show="false" :multiple="false" ref="file0" @change="fileChange">
+                  </div>
+                </template>
+                <template v-else>
+                  <span>简历</span>
+                  <b class="file_name">{{this.fileName}}</b>
+                  <i @click="fileName = ''" class="del_btn">x</i>
+                  <!-- <i class="iconfont icon-xiazai1 download_btn"
+                    @click="download(item.attachmentId)"></i> -->
+                </template>
+              </div>
+            </td>
+          </tr>
+        </table>
       <div class="btn_contain">
-        <el-button @click="editUserInfo" size="mini">修改</el-button>
+        <el-button class="btn_box" @click="editUserInfo" size="mini">修改</el-button>
       </div>
     </div>
     <PublicTitle title="赛题详情下载"/>
@@ -106,13 +135,11 @@
 
 <script>
 import PublicTitle from '@/components/public_title.vue'
-import PublicButton from '@/components/public_button.vue'
 
 import { mapActions } from 'vuex'
 export default {
   components: {
-    PublicTitle,
-    PublicButton
+    PublicTitle
   },
   data () {
     return {
@@ -200,8 +227,11 @@ export default {
 
 <style lang="scss" scoped>
 .userInfo_container {
-  width: 1526px;
+  width: 15.26rem;
   min-height: 100vh;
+  background: #FFFFFF;
+  border-radius: .1rem;
+  padding-bottom: .38rem;
 
   // background-color: #f4f5f8;
   .del_btn {
@@ -211,13 +241,51 @@ export default {
     color: red;
   }
   .user_contain {
-    margin-top: 30px;
-    margin-bottom: 40px;
-    padding: 20px 30px;
-
+    margin: 0 .24rem;
+    padding-right: .34rem;
+    padding-top: .1rem;
     background-color: #fff;
     box-shadow:0px 2px 6px rgba(0,0,0,0.2);
-    border-radius: 8px;
+    border-radius: .08rem;
+    min-height: 1.6rem;
+    table {
+      width: 100%;
+      tr {
+        td {
+          width: 33.3%;
+        }
+      }
+      .item {
+        width: 100%;
+        display: flex;
+        align-items: baseline;
+        margin: .15rem 0;
+
+        span, p {
+          text-align: right;
+          min-width: .66rem;
+          margin-right: .08rem;
+          font-size: 0.14rem;
+        }
+        .el_btn {
+          width: 100%;
+          height: .3rem;
+          background: #59B1FE;
+          font-size: 0.16rem;
+          font-weight: 400;
+          color: #FFFFFF;
+          line-height: 0;
+          padding: 0;
+        }
+        .tips {
+          margin-top: .15rem;
+          text-align: center;
+          font-size: 0.14rem;
+          font-weight: 400;
+          color: #333333;
+        }
+      }
+    }
     &.ops_contain {
       display: flex;
       p {
@@ -234,17 +302,20 @@ export default {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      padding-top: .03rem;
 
-      div {
-        width: 50%;
-        margin: 10px 0;
+      .item {
+        width: 33%;
+        margin: .15rem 0;
+        display: flex;
+        align-items: center;
 
         text-align: center;
         span {
           display: inline-block;
 
-          width: 85px;
-          margin-right: 10px;
+          width: .63rem;
+          margin-right: .08rem;
 
           text-align: right;
         }
@@ -269,6 +340,10 @@ export default {
       margin-top: 10px;
 
       text-align: center;
+      .btn_box {
+        width: 1rem;
+        margin-bottom: .3rem;
+      }
     }
   }
 }
@@ -278,6 +353,22 @@ export default {
   .userInfo_container .user_contain .user_top div.el-textarea {
     vertical-align: top;
     margin: 0;
+  }
+  .userInfo_container {
+    table {
+      .el-textarea {
+        &__inner {
+          height: .95rem;
+        }
+      }
+      .el-input {
+        width: 100%;
+        &__inner {
+          height: .31rem;
+          line-height: .31rem;
+        }
+      }
+    }
   }
   .el-dialog__body {
     padding: 0 20px;

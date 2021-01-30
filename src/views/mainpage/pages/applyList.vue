@@ -14,27 +14,27 @@
           </div>
           <div class="item_contain">
             <p class="item_detail">
-              <span class="title">手机号: </span>
+              <span class="title">手机号：</span>
               <span class="detail">{{item.phone}}</span>
             </p>
             <p class="item_detail">
-              <span class="title">邮箱: </span>
+              <span class="title">邮箱：</span>
               <span class="detail">{{item.email}}</span>
             </p>
             <p class="item_detail">
-              <span class="title">学校: </span>
+              <span class="title">学校：</span>
               <span class="detail">{{item.school}}</span>
             </p>
             <p class="item_detail">
-              <span class="title">专业: </span>
+              <span class="title">专业：</span>
               <span class="detail">{{item.profession}}</span>
             </p>
             <p class="item_detail">
-              <span class="title">年级: </span>
+              <span class="title">年级：</span>
               <span class="detail">{{item.grade}}</span>
             </p>
             <p class="item_detail">
-              <span class="title">留言: </span>
+              <span class="title">留言：</span>
               <el-tooltip class="item" effect="dark" :content="item.leaveMessege" placement="top-start">
                 <span class="detail">{{item.leaveMessege}}</span>
               </el-tooltip>
@@ -42,8 +42,8 @@
           </div>
         </div>
         <div class="btn_contain">
-          <span @click="greenApply(item, 2)">拒绝</span>
-          <span @click="greenApply(item, 1)">同意入队</span>
+          <div class="div_1" @click="greenApply(item, 2)">拒绝</div>
+          <div class="div_2" @click="greenApply(item, 1)">同意入队</div>
         </div>
       </div>
     </div>
@@ -100,6 +100,10 @@ export default {
 
 <style lang="scss" scoped>
   .apply_list_container {
+    width: 15.26rem;
+    background: #FFFFFF;
+    border-radius: .1rem;
+    border: 1px solid red;
     .no_data {
       width: 100%;
       text-align: center;
@@ -111,46 +115,43 @@ export default {
     .apply_contain {
       display: flex;
       flex-wrap: wrap;
+      padding: 0 .24rem;
+      margin-top: -.2rem;
       .member_item {
         position: relative;
-
-        width: 31%;
-        margin-top: 30px;
+        width: 3.39rem;
+        margin-bottom: .3rem;
         overflow: hidden;
-        margin-left: 3.3%;
-        padding-bottom: 50px;
+        margin-left: .38rem;
 
-        background-color: $card_bg_color;
-        border-radius: 10px;
+        background: radial-gradient(circle, rgba(0, 80, 213, 1) 20%, rgba(1, 68, 190, .7) 100%, rgba(0, 80, 213, 1) 100%);
+        border-radius: .1rem;
         transition: all .2s linear;
-        border: 2px solid $border_color;
-        &:nth-child(3n + 1) {
+        &:nth-child(4n + 1) {
           margin-left: 0;
         }
         &:hover {
-          box-shadow: 0 15px 30px rgba(0,0,0,.1);
+          box-shadow: 0 .15rem .3rem rgba(0,0,0,.1);
           transform: translate3d(0,-2px,0);
         }
         .member_name {
-          height: 40px;
-          line-height: 40px;
-
+          height: .57rem;
+          padding-top: .18rem;
           text-align: center;
-          font-size: 16px;
-          font-weight: bold;
+          font-size: 0.14rem;
+          font-weight: 400;
+          color: #FFFFFF;
           i {
+            margin-right: .1rem;
             color: #fff;
-          }
-          span {
-            color: $border_color;
           }
         }
         .item_contain {
-          padding: 0 20px;
+          padding: 0 .2rem;
 
           .item_detail {
-            padding-bottom: 10px;
-            font-size: 14px;
+            padding-bottom: .17rem;
+            font-size: .14rem;
             color: #fff;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -158,25 +159,30 @@ export default {
           }
         }
         .btn_contain {
-          position: absolute;
-          bottom: 0;
           display: flex;
+          justify-content: space-around;
 
           width: 100%;
-          height: 50px;
-          line-height: 50px;
+          padding-bottom: .1rem;
+          padding-top: .1rem;
 
           color: #fff;
           font-size: 14px;
-          border-top: 1px solid $border_color;
-          span {
-            width: 50%;
-            text-align: center;
-            // background: #dc1e32;
+          div {
+            border-radius: .05rem;
+            display: flex;
+            align-items: center;
+            border: 2px solid #FFFFFF;
+            padding: .07rem .3rem;
+            font-size: 0.18rem;
+            font-weight: bold;
+            color: #FFFFFF;
             cursor: pointer;
-            &:hover {
-              background: $border_color;
-            }
+          }
+          .div_2 {
+            border: 0;
+            color: #0056D7;
+            background: #FFFFFF;
           }
         }
       }
