@@ -79,7 +79,7 @@
             </td>
             <td>
               <div class="item">
-                <span>毕业时间</span>
+                <span>毕业</span>
                 <div style="width: 100%">
                   <el-select
                     size="mini"
