@@ -98,18 +98,18 @@
             </td>
             <td>
               <div class="files item">
+                <input type="file" v-show="false" :multiple="false" ref="file0" @change="fileChange">
                 <template v-if="!this.fileName">
                   <span>简历</span>
                   <div style="width: 100%">
                     <el-button class="el_btn" @click="clickUploadBtn">上传</el-button>
                     <p class="tips">文件格式: WORD/PDF/PNG等</p>
-                    <input type="file" v-show="false" :multiple="false" ref="file0" @change="fileChange">
                   </div>
                 </template>
                 <template v-else>
                   <span>简历</span>
                   <b class="file_name">{{this.fileName}}</b>
-                  <i @click="fileName = ''" class="del_btn">x</i>
+                  <i style="marginLeft: 10px" @click="clickUploadBtn" class="el-icon-upload2"></i>
                   <!-- <i class="iconfont icon-xiazai1 download_btn"
                     @click="download(item.attachmentId)"></i> -->
                 </template>
@@ -228,8 +228,9 @@ export default {
     // 上传简历
     async fileChange (e) {
       const file = e.target.files[0]
-      let type = file.type.split('.')
+      let type = file.name.split('.')
       type = type[type.length - 1]
+      console.log(type)
       if (this.limitType.indexOf(type) === -1) {
         this.$messge.error('文件格式错误, 请重新上传')
         this.$refs.file0.value = ''
@@ -274,6 +275,7 @@ export default {
       const res = await this.GET_USER_INFO()
       if (res.result === '0' && res.data) {
         this.userForm = res.data
+        this.fileName = res.data.resumeName
         this.userForm.gender === 0 && (this.gender = '未知')
         this.userForm.gender === 1 && (this.gender = '男')
         this.userForm.gender === 2 && (this.gender = '女')
@@ -293,6 +295,12 @@ export default {
   padding-bottom: .38rem;
 
   // background-color: #f4f5f8;
+  .el-icon-upload2 {
+    cursor: pointer;
+    &:hover {
+      color: #1989fa;
+    }
+  }
   .del_btn {
     margin-left: 20px;
     cursor: pointer;
