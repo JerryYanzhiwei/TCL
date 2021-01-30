@@ -58,7 +58,44 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2"></td>
+            <td>
+              <div class="item">
+                <span>学历</span>
+                <div style="width: 100%">
+                  <el-select
+                    size="mini"
+                    v-model="userForm.educational"
+                    placeholder="">
+                    <el-option
+                      v-for="item in educationalArr"
+                      :key="item"
+                      :label="item"
+                      :value="item">
+                    </el-option>
+                  </el-select>
+                  <p class="tips" style="color:#fff;">占位</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="item">
+                <span>毕业时间</span>
+                <div style="width: 100%">
+                  <el-select
+                    size="mini"
+                    v-model="userForm.educationalYear"
+                    placeholder="">
+                    <el-option
+                      v-for="item in educationalYearArr"
+                      :key="item"
+                      :label="item"
+                      :value="item">
+                    </el-option>
+                  </el-select>
+                  <p class="tips" style="color:#fff;">占位</p>
+                </div>
+              </div>
+            </td>
             <td>
               <div class="files item">
                 <template v-if="!this.fileName">
@@ -170,11 +207,17 @@ export default {
       attachmentId: null,
       checked: false,
       fileName: '',
-      limitType: ['doc', 'docx', 'pdf', 'png']
+      limitType: ['doc', 'docx', 'pdf', 'png'],
+      educationalArr: [
+        '专科', '本科', '硕士', '博士', '其他'
+      ],
+      educationalYearArr: [
+        '2021年', '2022年', '2023年', '2024年', '2024年之后'
+      ]
     }
   },
   created () {
-    this.getUserInfo()
+    // this.getUserInfo()
   },
   methods: {
     ...mapActions(['GET_USER_INFO', 'PUT_USER_INFO', 'GET_DOWNLOAD_TEMPLATE', 'PUT_RESUME']),
@@ -375,6 +418,13 @@ export default {
       .el-textarea {
         &__inner {
           height: .95rem;
+        }
+      }
+      .el-select {
+        width: 100%;
+        .el-input__icon {
+          display: flex;
+          align-items: center;
         }
       }
       .el-input {
