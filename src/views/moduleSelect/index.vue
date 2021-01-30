@@ -173,7 +173,7 @@ export default {
     return {
       bg,
       teamLogo,
-      dialogVisible: true,
+      dialogVisible: false,
       matchArr: jsonData,
       provinceArr: [],
       classArr: [],
