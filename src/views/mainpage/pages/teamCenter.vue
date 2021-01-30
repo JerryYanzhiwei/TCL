@@ -268,7 +268,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       padding: 0 .24rem;
-      margin-top: -.2rem;
+      // margin-top: -.2rem;
       &.added_contain {
         margin-bottom: 30px;
       }

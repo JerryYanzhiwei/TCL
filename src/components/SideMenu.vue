@@ -20,7 +20,7 @@
       </div>
 
       <div class="menu_item_contain">
-        <div @click="toRouter(item.path)" class="menu_item" v-for="(item, index) in menuData" :key="index">
+        <div v-show="item.flag" @click="toRouter(item.path)" class="menu_item" v-for="(item, index) in menuData" :key="index">
           <div class="icon_contain">
             <img :src="item.icon" alt="">
           </div>
@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     toRouter (path) {
-      this.$toure.push(path)
+      this.$router.push(path)
     }
   }
 }

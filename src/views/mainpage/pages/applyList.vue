@@ -116,7 +116,6 @@ export default {
       display: flex;
       flex-wrap: wrap;
       padding: 0 .24rem;
-      margin-top: -.2rem;
       .member_item {
         position: relative;
         width: 3.39rem;
