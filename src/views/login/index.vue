@@ -152,21 +152,22 @@
               >
             </el-input>
           </el-form-item>
-          <!-- 年级 -->
+          <!-- 学历 -->
           <el-form-item
-            prop="grade"
-            label="年级">
+            prop="educational"
+            label="学历">
             <el-input
-              v-model="registryForm.grade"
+              v-model="registryForm.educational"
               size="mini"
               >
             </el-input>
           </el-form-item>
-          <!-- 备注 -->
+          <!-- 毕业时间 -->
           <el-form-item
-            label="备注">
+            prop="educationalYear"
+            label="毕业时间">
             <el-input
-              v-model="registryForm.described"
+              v-model="registryForm.educationalYear"
               size="mini"
               >
             </el-input>
@@ -234,8 +235,8 @@ export default {
         email: '',
         school: '',
         profession: '',
-        grade: '',
-        described: ''
+        educational: '',
+        educationalYear: ''
       },
       postForm: null,
       sexArr: [
@@ -277,7 +278,10 @@ export default {
         profession: [
           { required: true, message: '', trigger: 'blur' }
         ],
-        grade: [
+        educational: [
+          { required: true, message: '', trigger: 'blur' }
+        ],
+        educationalYear: [
           { required: true, message: '', trigger: 'blur' }
         ]
       }
@@ -415,7 +419,9 @@ export default {
               this.$alert('注册成功, 请在电脑中继续操作', 'TIP', {
                 confirmButtonText: '确定',
                 callback: action => {
-                  this.drawVisibel = true
+                  setTimeout(() => {
+                    location.reload()
+                  }, 3000)
                 }
               })
             } else {

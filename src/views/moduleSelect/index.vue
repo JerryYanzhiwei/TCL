@@ -73,6 +73,7 @@
         <el-form-item
           prop="catagory"
           label="分类"
+          v-show="false"
           >
           <el-select
             size="mini"
@@ -90,6 +91,7 @@
         <el-form-item
           prop="opusDirection"
           label="作品方向"
+          v-show="false"
           >
           <el-select
             size="mini"
@@ -171,7 +173,7 @@ export default {
     return {
       bg,
       teamLogo,
-      dialogVisible: false,
+      dialogVisible: true,
       matchArr: jsonData,
       provinceArr: [],
       classArr: [],
@@ -217,8 +219,10 @@ export default {
       }
     }
   },
-  created () {
-    this.getDirection()
+  async created () {
+    await this.getDirection()
+    this.selecClass(1)
+    this.selecDirect(1)
   },
   methods: {
     ...mapActions(['POST_CREATE_TEAM', 'GET_DIRECTION', 'GET_USER_INFO']),
