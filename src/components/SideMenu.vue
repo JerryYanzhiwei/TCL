@@ -17,9 +17,11 @@
 </template>
 
 <script>
+import menuLogo from '@/assets/images/tcl/menuLogo.png'
 export default {
   data () {
     return {
+      menuLogo
     }
   },
   computed: {
