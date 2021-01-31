@@ -37,10 +37,10 @@
               </el-select>
             </span>
             <span class="filter_item">
-              <span class="white">方向:</span>
+              <span class="white">课题:</span>
               <el-select
                 size="mini"
-                v-model="hallData.directionId"
+                v-model="hallData.subjectId"
                 placeholder="">
                 <el-option
                   :key="-1"
@@ -48,10 +48,10 @@
                   value="">
                 </el-option>
                 <el-option
-                  v-for="item in directList"
-                  :key="item.directionName"
-                  :label="item.directionName"
-                  :value="item.directionId">
+                  v-for="item in subjectArr"
+                  :key="item.subjectName"
+                  :label="item.subjectName"
+                  :value="item.subjectId">
                 </el-option>
               </el-select>
             </span>
@@ -85,10 +85,10 @@
                 <div class="title">省份: </div>
                 <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
               </div>
-              <div class="item_detail">
+              <!-- <div class="item_detail">
                 <div class="title">作品方向: </div>
                 <div class="detail">{{item.opusDirection}}</div>
-              </div>
+              </div> -->
               <div class="item_detail">
                 <div class="title">作品课题: </div>
                 <div class="detail">{{item.subject}}</div>
@@ -189,25 +189,34 @@ export default {
       },
       directList: [],
       pageData: null,
-      provinceData: []
+      provinceData: [],
+      classArr: [],
+      directionArr: [],
+      subjectArr: []
     }
   },
-  created () {
+  async created () {
     this.getHallData()
     this.getProvinces()
-    this.getDirect()
+    await this.getDirect()
+    this.selecClass(1)
+    this.selecDirect(1)
   },
   methods: {
     ...mapActions(['GET_HALL_DATA', 'POST_APPLY_TEAM', 'GET_DIRECTION']),
 
     async getDirect () {
       const res = await this.GET_DIRECTION()
-      if (res.result === '0' && res.data) {
-        res.data.map((item) => {
-          this.directList = this.directList.concat(item.directions)
-        })
-      }
-      console.log(res)
+      this.classArr = res.data
+    },
+
+    selecClass (data) {
+      const arr = this.classArr.filter((val) => val.categoryId === data)
+      this.directionArr = arr[0].directions
+    },
+    selecDirect (data) {
+      const arr = this.directionArr.filter((val) => val.directionId === data)
+      this.subjectArr = arr[0].subjects
     },
 
     getProvinces () {
