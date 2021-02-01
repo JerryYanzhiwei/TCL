@@ -33,7 +33,7 @@
           <td>
             <div class="items">
               <span class="item_name">赛区：</span>
-              <el-input disabled size="mini" v-model="teamInfo.matchZone"></el-input>
+              <el-input disabled size="mini" :value="getZone(teamInfo.matchZone)"></el-input>
             </div>
           </td>
           <td>
