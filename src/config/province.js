@@ -86,7 +86,7 @@ export default [
     ]
   },
   {
-    matchZone: '西北',
+    matchZone: '西部',
     code: 1004,
     province: [
       {
@@ -108,13 +108,7 @@ export default [
       {
         city: '宁夏回族自治区',
         code: 22
-      }
-    ]
-  },
-  {
-    matchZone: '西南',
-    code: 1005,
-    province: [
+      },
       {
         city: '重庆',
         code: 23
@@ -168,6 +162,16 @@ export default [
       {
         city: '台湾',
         code: 34
+      }
+    ]
+  },
+  {
+    matchZone: '海外',
+    code: 1007,
+    province: [
+      {
+        city: '海外地区',
+        code: 35
       }
     ]
   }
