@@ -7,13 +7,13 @@
             <td>
               <div class="item">
                 <span>姓名</span>
-                <el-input v-model="userForm.name" size="mini"></el-input>
+                <el-input :disabled="editStatus" v-model="userForm.name" size="mini"></el-input>
               </div>
             </td>
             <td>
               <div class="item">
                 <span>年级</span>
-                <el-input v-model="userForm.grade" size="mini"></el-input>
+                <el-input :disabled="editStatus" v-model="userForm.grade" size="mini"></el-input>
               </div>
             </td>
             <td>
@@ -27,19 +27,19 @@
             <td>
               <div class="item">
                 <span>手机</span>
-                <el-input disabled="" v-model="userForm.phone" size="mini"></el-input>
+                <el-input disabled v-model="userForm.phone" size="mini"></el-input>
               </div>
             </td>
             <td rowspan="2">
               <div class="item">
                 <span>备注</span>
-                <el-input v-model="userForm.described" resize="none" type="textarea"></el-input>
+                <el-input :disabled="editStatus" v-model="userForm.described" resize="none" type="textarea"></el-input>
               </div>
             </td>
             <td>
               <div class="item">
                 <span>邮箱</span>
-                <el-input v-model="userForm.email" size="mini"></el-input>
+                <el-input :disabled="editStatus" v-model="userForm.email" size="mini"></el-input>
               </div>
             </td>
           </tr>
@@ -47,13 +47,13 @@
             <td>
               <div class="item">
                 <span>学校</span>
-                <el-input v-model="userForm.school" size="mini"></el-input>
+                <el-input :disabled="editStatus" v-model="userForm.school" size="mini"></el-input>
               </div>
             </td>
             <td>
               <div class="item">
                 <span>专业</span>
-                <el-input v-model="userForm.profession" size="mini"></el-input>
+                <el-input :disabled="editStatus" v-model="userForm.profession" size="mini"></el-input>
               </div>
             </td>
           </tr>
@@ -63,6 +63,7 @@
                 <span>学历</span>
                 <div style="width: 100%">
                   <el-select
+                    :disabled="editStatus"
                     size="mini"
                     v-model="userForm.educational"
                     placeholder="">
@@ -82,6 +83,7 @@
                 <span>毕业</span>
                 <div style="width: 100%">
                   <el-select
+                    :disabled="editStatus"
                     size="mini"
                     v-model="userForm.educationalYear"
                     placeholder="">
@@ -118,7 +120,8 @@
           </tr>
         </table>
       <div class="btn_contain">
-        <el-button class="btn_box" @click="editUserInfo" size="mini">修改</el-button>
+        <el-button v-show="editStatus" class="btn_box" @click="editStatus = false" size="mini">修改</el-button>
+        <el-button v-show="!editStatus" class="btn_box" @click="editUserInfo" size="mini">确定</el-button>
       </div>
     </div>
     <PublicTitle title="赛题详情下载"/>
@@ -207,6 +210,7 @@ export default {
       attachmentId: null,
       checked: false,
       fileName: '',
+      editStatus: true,
       limitType: ['doc', 'docx', 'pdf', 'png'],
       educationalArr: [
         '专科', '本科', '硕士', '博士', '其他'
@@ -268,6 +272,7 @@ export default {
       const res = await this.PUT_USER_INFO(params)
       if (res.result === '0' && res.data) {
         this.$message.success('修改成功')
+        this.editStatus = true
       }
       console.log(res)
     },
