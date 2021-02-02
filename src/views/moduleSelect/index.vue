@@ -201,12 +201,6 @@ export default {
         matchZone: [
           { required: true, message: '', trigger: 'blur' }
         ],
-        catagory: [
-          { required: true, message: '', trigger: 'blur' }
-        ],
-        opusDirection: [
-          { required: true, message: '', trigger: 'blur' }
-        ],
         subject: [
           { required: true, message: '', trigger: 'blur' }
         ],

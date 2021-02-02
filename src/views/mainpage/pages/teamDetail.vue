@@ -33,12 +33,12 @@
             <span class="item_detail">{{getProvince(teamInfo.matchZone, teamInfo.province)}}</span>
           </el-tooltip>
         </div>
-        <div class="item">
+        <!-- <div class="item">
           <span class="item_name">方向: </span>
           <el-tooltip class="item" effect="dark" :content="teamInfo.opusDirection" placement="top-start">
             <span class="item_detail">{{teamInfo.opusDirection}}</span>
           </el-tooltip>
-        </div>
+        </div> -->
         <div class="item">
           <span class="item_name">课题: </span>
           <el-tooltip class="item" effect="dark" :content="teamInfo.subject" placement="top-start">

@@ -34,10 +34,10 @@
             <div class="title">省份：</div>
             <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
           </div>
-          <div class="item_detail">
+          <!-- <div class="item_detail">
             <div class="title">方向：</div>
             <div class="detail">{{item.opusDirection}}</div>
-          </div>
+          </div> -->
           <div class="item_detail">
             <div class="title">课题：</div>
             <div class="detail">{{item.subject}}</div>
@@ -100,10 +100,10 @@
             <div class="title">省份：</div>
             <div class="detail">{{getProvince(item.matchZone, item.province)}}</div>
           </div>
-          <div class="item_detail">
+          <!-- <div class="item_detail">
             <div class="title">方向：</div>
             <div class="detail">{{item.opusDirection}}</div>
-          </div>
+          </div> -->
           <div class="item_detail">
             <div class="title">课题：</div>
             <div class="detail">{{item.subject}}</div>
