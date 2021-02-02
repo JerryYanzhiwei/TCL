@@ -11,7 +11,7 @@
     <!-- 登录 -->
     <div v-if="isLogin && deviceType === 1" class="login_content">
       <div class="login_txt">
-        <img :src="logo2" alt="">
+        <img :src="logo3" alt="">
       </div>
       <p class="login_tips">欢迎登录</p>
       <div class="form_item">
@@ -43,7 +43,7 @@
     <!-- 注册 -->
     <div v-else class="registry_content">
       <div class="registry_txt">
-        <img :src="logo2" alt="">
+        <img :src="logo3" alt="">
       </div>
       <!-- 返回登录 -->
       <p class="back_login" v-if="deviceType === 1" @click="isLogin = true">返回登录</p>
@@ -208,6 +208,7 @@
 import { mapActions } from 'vuex'
 import bg from '@/assets/images/newPicture/login.png'
 import logo2 from '@/assets/images/newPicture/logo.png'
+import logo3 from '@/assets/images/newPicture/logo2.png'
 export default {
   data () {
     return {
@@ -216,6 +217,7 @@ export default {
       prizeBack: require('../../assets/images/cover2.png'),
       bg,
       logo2,
+      logo3,
       showCount: false,
       count: 0,
       timer: null,
@@ -482,7 +484,7 @@ export default {
         margin-left: 32px;
         font-size: 20px;
         font-weight: bold;
-        color: #FFFBFB;
+        color: #e60012;
       }
     }
     .reload {
@@ -575,6 +577,7 @@ export default {
 
       background-color: #fff;
       border-radius: 8px;
+      margin-left: -50%;
       .registry_txt {
         display: flex;
         align-items: center;
@@ -691,6 +694,7 @@ export default {
       height: 100%;
       box-shadow: unset;
       border-radius: 0;
+      margin-left: 0;
     }
     .login_container {
       .left_logo {
