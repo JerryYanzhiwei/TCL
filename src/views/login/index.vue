@@ -5,7 +5,7 @@
       backgroundSize: 'cover'
     }">
     <div class="left_logo">
-      <img :src="logo2" alt="">
+      <img :src="logo3" alt="">
       <p>2021年tcl高校科创节</p>
     </div>
     <!-- 登录 -->
@@ -484,7 +484,7 @@ export default {
         margin-left: 32px;
         font-size: 20px;
         font-weight: bold;
-        color: #e60012;
+        color: #fff;
       }
     }
     .reload {
