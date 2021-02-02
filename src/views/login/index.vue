@@ -6,7 +6,7 @@
     }">
     <div class="left_logo">
       <img :src="logo3" alt="">
-      <p>2021年tcl高校科创节</p>
+      <p>2021年TCL高校科创节</p>
     </div>
     <!-- 登录 -->
     <div v-if="isLogin && deviceType === 1" class="login_content">
