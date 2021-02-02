@@ -436,7 +436,7 @@ export default {
           if (res.result === '0' && res.data) {
             this.$message.success('注册成功')
             if (width < 500) {
-              this.$alert('注册成功, 请在电脑中继续操作', 'TIP', {
+              this.$alert('注册成功，请在PC网站中继续操作', 'TIP', {
                 confirmButtonText: '确定',
                 callback: action => {
                   setTimeout(() => {
