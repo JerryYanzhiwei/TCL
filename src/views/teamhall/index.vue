@@ -192,22 +192,32 @@ export default {
       provinceData: [],
       classArr: [],
       directionArr: [],
-      subjectArr: []
+      subjectArr: [],
+      userInfo: {
+        teamFlag: false
+      }
     }
   },
   async created () {
     this.getHallData()
     this.getProvinces()
+    this.getUserInfo()
     await this.getDirect()
     this.selecClass(1)
     this.selecDirect(1)
   },
   methods: {
-    ...mapActions(['GET_HALL_DATA', 'POST_APPLY_TEAM', 'GET_DIRECTION']),
+    ...mapActions(['GET_HALL_DATA', 'POST_APPLY_TEAM', 'GET_DIRECTION', 'GET_USER_INFO']),
 
     async getDirect () {
       const res = await this.GET_DIRECTION()
       this.classArr = res.data
+    },
+
+    // 获取个人信息
+    async getUserInfo () {
+      const res = await this.GET_USER_INFO()
+      this.userInfo = res.data
     },
 
     selecClass (data) {
@@ -255,6 +265,10 @@ export default {
 
     // 提交申请
     joinTeam (teamNo) {
+      if (this.userInfo.teamFlag) {
+        this.$message.error('您已加入队伍, 请不要重复加入')
+        return
+      }
       this.joinData.teamNo = teamNo
       this.dialogVisible = true
     },
