@@ -103,7 +103,6 @@ export default {
     width: 15.26rem;
     background: #FFFFFF;
     border-radius: .1rem;
-    border: 1px solid red;
     .no_data {
       width: 100%;
       text-align: center;

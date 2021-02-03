@@ -358,7 +358,7 @@ export default {
             height: 40px;
             line-height: 40px;
             padding: 0 20px;
-            padding-left: 0;
+            padding-left: 100px;
 
             text-align: center;
             font-size: 16px;
