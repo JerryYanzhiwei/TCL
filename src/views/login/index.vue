@@ -6,7 +6,7 @@
     }">
     <div class="left_logo">
       <img :src="logo3" alt="">
-      <p>2021年tcl高校科创节</p>
+      <p>2021年TCL高校科创节</p>
     </div>
     <!-- 登录 -->
     <div v-if="isLogin && deviceType === 1" class="login_content">
@@ -436,7 +436,7 @@ export default {
           if (res.result === '0' && res.data) {
             this.$message.success('注册成功')
             if (width < 500) {
-              this.$alert('注册成功, 请在电脑中继续操作', 'TIP', {
+              this.$alert('注册成功，请在PC网站中继续操作', 'TIP', {
                 confirmButtonText: '确定',
                 callback: action => {
                   setTimeout(() => {
