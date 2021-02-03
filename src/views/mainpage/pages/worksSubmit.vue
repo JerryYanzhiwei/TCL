@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted () {
-    this.getData()
+    // this.getData()
   },
   methods: {
     ...mapActions(['POST_FILE_UPLOAD', 'GET_TEAM_FILE', 'GET_DOWNLOAD_FILE']),
@@ -261,7 +261,7 @@ export default {
         }
         .center_left {
           flex-grow: 1;
-          padding: 20px;
+          padding: 100px;
           color: #333;
           width: 320px;
         }
