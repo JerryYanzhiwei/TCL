@@ -126,7 +126,7 @@
     </div>
     <PublicTitle title="赛题详情下载"/>
     <div class="user_contain ops_contain">
-      <p class="tips">即将揭秘，敬请期待</p>
+      <p class="tips_import">即将揭秘，敬请期待</p>
       <!-- <p>
         包装类课题介绍
         <i class="iconfont icon-xiazai1 download_btn"
@@ -140,7 +140,7 @@
     </div>
     <PublicTitle title="相关赛事文件下载"/>
     <div class="user_contain ops_contain">
-      <p class="tips">即将揭秘，敬请期待</p>
+      <p class="tips_import">即将揭秘，敬请期待</p>
       <!-- <p>
         2021大赛大咖公开课内容提纲-包装
         <i class="iconfont icon-xiazai1 download_btn"
@@ -322,7 +322,7 @@ export default {
     box-shadow:0px 2px 6px rgba(0,0,0,0.2);
     border-radius: .08rem;
     min-height: 1.6rem;
-    .tips {
+    .tips_import {
       color: #000 !important;
       font-size: .16rem;
       padding: .2rem;
