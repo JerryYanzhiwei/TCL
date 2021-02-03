@@ -3,7 +3,7 @@
   <div class="works_submit_container">
     <PublicTitle title="作品提交" color="#fff" />
     <div class="submit_container">
-      <!-- <div class="submit_item">
+      <div class="submit_item">
         <div class="submit_left flex_center">作品说明书</div>
         <div class="submit_center">
           <div class="center_left">
@@ -16,6 +16,7 @@
               v-for="(item, index) in file"
               :key="index">
               <span>{{item.attachmentFileName}}</span>
+              <!-- <span @click="delFile('', index)" class="del_btn">x</span> -->
               <i class="iconfont icon-xiazai1 download_btn"
                 @click="download(item.attachmentId)"></i>
             </div>
@@ -27,8 +28,8 @@
           <p>(支持格式PNG/PDF/WORD等)</p>
           <input type="file" v-show="false" :multiple="false" ref="file0" @change="fileChange">
         </div>
-      </div> -->
-      <!-- <div class="submit_item">
+      </div>
+      <div class="submit_item">
         <div class="submit_left flex_center">作品介绍</div>
         <div class="submit_center">
           <div class="center_left">
@@ -43,6 +44,7 @@
               v-for="(item, index) in file1"
               :key="index">
               <span>{{item.attachmentFileName}}</span>
+              <!-- <span @click="delFile('1', index)" class="del_btn">x</span> -->
               <i class="iconfont icon-xiazai1 download_btn"
                 @click="download(item.attachmentId)"></i>
             </div>
@@ -53,24 +55,26 @@
           <PublicButton @clickHandle="clickUploadBtn('1')">上传</PublicButton>
           <p>(支持格式PNG/PDF/WORD等)</p>
           <input type="file" v-show="false" :multiple="false" ref="file1" @change="fileChange1">
+          <!-- <i class="iconfont icon-lajitong"></i> -->
         </div>
-      </div> -->
+      </div>
       <div class="submit_item">
         <div class="submit_left flex_center">作品附件</div>
         <div class="submit_center">
           <div class="center_left">
-            <div class="tip_item">敬请期待</div>
+            <div class="tip_item">作品相关附件</div>
           </div>
-          <!-- <div class="center_right">
+          <div class="center_right">
             <div class="file_item"
               v-for="(item, index) in file2"
               :key="index">
               <span>{{item.attachmentFileName}}</span>
+              <!-- <span @click="delFile('2', index)" class="del_btn">x</span> -->
               <i class="iconfont icon-xiazai1 download_btn"
                 @click="download(item.attachmentId)"></i>
             </div>
             <span v-if="!file2.length">暂无数据</span>
-          </div> -->
+          </div>
         </div>
         <div class="submit_right flex_center">
           <PublicButton @clickHandle="clickUploadBtn('2')">上传</PublicButton>
@@ -219,10 +223,6 @@ export default {
   color: #dc1e32;
 }
 .works_submit_container {
-  width: 15.29rem;
-  border-radius: .1rem;
-  background-color: #fff;
-  padding: 0 20px;
   .flex_center {
     display: flex;
     justify-content: center;
@@ -231,9 +231,13 @@ export default {
   .submit_container {
     margin-top: 30px;
     margin-bottom: 50px;
+    box-shadow: 1px 2px 5px 1px #fff;
     .submit_item {
       display: flex;
-      border: 1px solid #333;
+      border-bottom: 1px solid #fff;
+      &:last-child {
+        border-bottom: unset;
+      }
       .submit_left,
       .submit_right {
         display: flex;
@@ -241,14 +245,11 @@ export default {
         justify-content: center;
         flex-direction: column;
         width: 20%;
-        // padding: 0 20px;
-        color: #333;
-      }
-      .submit_right {
-        font-size: 12px;
+        padding: 0 20px;
+        color: #fff;
       }
       .submit_left {
-        border-right: 1px solid #ddd;
+        border-right: 1px solid #fff;
       }
       .submit_center {
         display: flex;
@@ -261,43 +262,42 @@ export default {
         }
         .center_left {
           flex-grow: 1;
-          padding: 100px;
-          color: #333;
-          width: 320px;
+          padding: 20px;
+          color: #fff;
         }
-        // .center_right {
-        //   flex-shrink: 0;
-        //   display: flex;
-        //   align-items: center;
-        //   flex-flow: row wrap;
-        //   padding: 20px;
-        //   width: 320px;
-        //   height: 100%;
-        //   border-left: 1px solid #ddd;
-        //   .file_item {
-        //     width: 100%;
-        //     span {
-        //       width: 80%;
-        //       overflow: hidden;
-        //       display: inline-block;
-        //       text-overflow: ellipsis;
-        //       white-space: nowrap;
-        //       color: #333;
-        //     }
-        //   }
-        //   .del_btn {
-        //     margin-left: 20px;
-        //     cursor: pointer;
-        //     font-size: 24px;
-        //     color: red;
-        //   }
-        //   .download_btn {
-        //     margin-left: 20px;
-        //     cursor: pointer;
-        //     font-size: 20px;
-        //     color: #fff;
-        //   }
-        // }
+        .center_right {
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          flex-flow: row wrap;
+          padding: 20px;
+          width: 320px;
+          height: 100%;
+          border-left: 1px solid #ddd;
+          .file_item {
+            width: 100%;
+            span {
+              width: 80%;
+              overflow: hidden;
+              display: inline-block;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              color: #fff;
+            }
+          }
+          .del_btn {
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            color: red;
+          }
+          .download_btn {
+            margin-left: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #fff;
+          }
+        }
       }
       .submit_right {
         width: 20%;
@@ -313,10 +313,9 @@ export default {
   }
   .current_progress {
     margin-top: 30px;
-
     font-size: 16px;
     .progress {
-      color: #333;
+      color: #fff;
     }
     .process {
       margin-left: 10%;
