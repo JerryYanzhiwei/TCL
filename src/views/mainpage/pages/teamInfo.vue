@@ -173,7 +173,7 @@ export default {
     }
   },
   created () {
-    // this.getTeamInfo()
+    this.getTeamInfo()
   },
   methods: {
     ...mapActions(['GET_MY_TEAM_INFO', 'PUT_REMOVE_MEMBER', 'PUT_TEAM_COMPLETE', 'PUT_MY_TEAM_INFO']),
