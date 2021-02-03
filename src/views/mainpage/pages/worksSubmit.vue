@@ -108,7 +108,7 @@ export default {
     }
   },
   mounted () {
-    // this.getData()
+    this.getData()
   },
   methods: {
     ...mapActions(['POST_FILE_UPLOAD', 'GET_TEAM_FILE', 'GET_DOWNLOAD_FILE']),
