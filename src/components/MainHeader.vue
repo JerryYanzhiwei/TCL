@@ -51,7 +51,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 100%;
-  width: 1024px;
+  width: 100%;
+  padding-left: 2.3rem;
   .left_txt {
     color: #fff;
     font-size: 20px;

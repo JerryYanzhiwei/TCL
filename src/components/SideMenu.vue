@@ -104,7 +104,7 @@ export default {
   height: 7.1rem;
   margin-top: .43rem;
   margin-left: .25rem;
-  padding-top: .7rem;
+  padding-top: .6rem;
 
   background-color: #fff;
   box-shadow: 0px 2px 9px 0px #012E98;

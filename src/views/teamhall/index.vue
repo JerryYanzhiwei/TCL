@@ -61,7 +61,7 @@
           </div>
         </div>
 
-        <PublicTitle title="队伍列表" color="#fff" />
+        <PublicTitle title="队伍大厅" color="#fff" />
         <div class="team_contain">
           <div v-for="(item, index) in teamList" :key="index" class="team_item">
             <div class="team_name">
@@ -376,6 +376,7 @@ export default {
               height: 100%;
               background-color: #fff;
               color: #0050D5;
+              border-top: 2px solid #48b7ff;
             }
             .title {
               font-size: 16px;
