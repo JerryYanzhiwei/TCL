@@ -31,6 +31,7 @@ export default {
 
     font-size: .18rem;
     span {
+      font-size: 16px;
       font-weight: bold;
       color: #333333;
       padding-bottom: 2px;
