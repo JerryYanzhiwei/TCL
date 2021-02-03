@@ -308,6 +308,7 @@ export default {
       height: calc(100vh - 120px);
       margin: 0 auto;
       margin-top: 60px;
+      overflow: auto;
 
       background-color: #fff;
       border-radius: 10px;
