@@ -497,6 +497,7 @@ export default {
       // padding: 20px;
 
       border-radius: 8px;
+      margin-left: -50%;
       .login_top {
         margin-bottom: 30px;
         text-align: center;
@@ -712,6 +713,13 @@ export default {
 
     .login_container .prize_contain .prize_items .prize_detail {
       width: 40%;
+    }
+  }
+
+  @media screen and (max-height: 800px) {
+    .registry_content {
+      height: 550px;
+      overflow: auto;
     }
   }
 </style>

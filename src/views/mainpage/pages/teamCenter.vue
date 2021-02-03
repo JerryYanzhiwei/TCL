@@ -294,7 +294,7 @@ export default {
           }
         }
         transition: all .2s linear;
-        &:nth-child(4n + 1) {
+        &:nth-child(3n + 1) {
           margin-left: 0;
         }
         &:hover {
