@@ -114,6 +114,7 @@
 <script>
 import { mapActions } from 'vuex'
 import PublicTitle from '@/components/public_title.vue'
+import { BASE_URL } from '@/utils/http'
 export default {
   components: {
     PublicTitle
@@ -139,7 +140,7 @@ export default {
       console.log(res)
     },
     async downLoad (file) {
-      window.open(`http://47.103.28.48:8080/match-service/user/teamInfo/dowload/attachment?attachmentId=${file.attachmentId}`)
+      window.open(`${BASE_URL}/user/teamInfo/dowload/attachment?attachmentId=${file.attachmentId}`)
     }
   }
 }
