@@ -718,7 +718,7 @@ export default {
 
   @media screen and (max-height: 800px) {
     .registry_content {
-      height: 400px;
+      height: 450px;
       overflow: auto;
     }
   }
