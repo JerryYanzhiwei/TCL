@@ -13,7 +13,10 @@
           <td>
             <div class="items">
               <span class="item_name">队伍：</span>
-              <el-input :disabled="!canEdit" size="mini" v-model="teamInfo.teamName"></el-input>
+              <el-input :disabled="!canEdit" size="mini" v-model="teamInfo.teamName" style="width: 50%;"></el-input>
+              <span style="min-width: auto;color: #0043BD; padding-left: 0.2rem;">
+                {{ teamInfo.teamState === 1 && '组队完成' || teamInfo.teamState === 0 && '发布中' }}
+              </span>
             </div>
           </td>
           <td>
@@ -99,12 +102,7 @@
 
       <!-- 操作按钮 -->
       <div class="leader_bottom">
-        <div class="item">
-          <span class="item_text">{{
-            teamInfo.teamState === 1 && '组 队 完 成' ||
-            teamInfo.teamState === 0 && '发 布 中'
-            }}</span>
-        </div>
+        <div class="item"></div>
         <div class="item">
           <el-button class="lead_btn" size="mini"
             @click="editTeamStatus(teamInfo.teamState)"
@@ -175,7 +173,7 @@ export default {
     }
   },
   created () {
-    this.getTeamInfo()
+    // this.getTeamInfo()
   },
   methods: {
     ...mapActions(['GET_MY_TEAM_INFO', 'PUT_REMOVE_MEMBER', 'PUT_TEAM_COMPLETE', 'PUT_MY_TEAM_INFO']),
