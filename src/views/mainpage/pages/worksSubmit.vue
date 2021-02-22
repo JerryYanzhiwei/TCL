@@ -252,6 +252,7 @@ export default {
           border-radius: 5px;
           border: 0;
           margin-bottom: 4px;
+          cursor: pointer;
         }
       }
       .submit_right {
