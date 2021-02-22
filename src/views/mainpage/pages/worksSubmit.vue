@@ -59,7 +59,13 @@
         <div class="submit_left flex_center">作品要求</div>
         <div class="submit_center">
           <div class="center_left">
-            <div class="tip_item">敬请期待</div>
+            <div class="tip_item">须至少提交《项目计划书》word文档，各团队可在此基础上自行添加内容。《项目计划书》word文档应包括如下内容：</div>
+            <div class="tip_item">① 项目背景：本项目的简要概述，包括背景，选择原因；</div>
+            <div class="tip_item">② 项目价值：项目对现状的改进，创新点，可行性分析等</div>
+            <div class="tip_item">③ 项目实现方案：项目的设计思路、开发规划、人员分工等；</div>
+            <div class="tip_item">④ 预期成果：此项目的最终呈现形式；</div>
+            <div class="tip_item">⑤ 成员简介：团队成员背景介绍等。</div>
+
           </div>
           <!-- <div class="center_right">
             <div class="file_item"
@@ -269,14 +275,14 @@ export default {
         display: flex;
         width: 50%;
         .tip_item {
-          line-height: 28px;
           &.title {
             font-weight: bold;
           }
         }
         .center_left {
           display: flex;
-          align-items: center;
+          flex-direction: column;
+          justify-content: center;
           padding: 10px;
           flex-grow: 1;
           color: #333;
