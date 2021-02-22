@@ -139,7 +139,7 @@
       </p> -->
     </div>
     <PublicTitle title="相关赛事文件下载"/>
-    <div class="user_contain ops_contain">
+    <div class="user_contain ops_contain pading_contain">
       <!-- <p class="tips_import">即将揭秘，敬请期待</p> -->
       <p>
         赛题相关学习资料1.docx
@@ -367,6 +367,10 @@ export default {
     }
     &.ops_contain {
       display: flex;
+      &.pading_contain {
+        align-items: center;
+        padding: 0 .34rem;
+      }
       p {
         margin-right: 20px;
         color: #dc1e32;
