@@ -140,18 +140,18 @@
     </div>
     <PublicTitle title="相关赛事文件下载"/>
     <div class="user_contain ops_contain">
-      <p class="tips_import">即将揭秘，敬请期待</p>
+      <!-- <p class="tips_import">即将揭秘，敬请期待</p> -->
+      <p>
+        赛题相关学习资料1.docx
+        <i class="iconfont icon-xiazai1 download_btn"
+                @click="download(0)"></i>
+      </p>
+      <p>
+        赛题相关学习资料2: 功耗大纲.mind
+        <i class="iconfont icon-xiazai1 download_btn"
+                @click="download(1)"></i>
+      </p>
       <!-- <p>
-        2021大赛大咖公开课内容提纲-包装
-        <i class="iconfont icon-xiazai1 download_btn"
-                @click="openModel(2)"></i>
-      </p>
-      <p>
-        2021TCL创新大赛大咖公开课内容提纲-仓储
-        <i class="iconfont icon-xiazai1 download_btn"
-                @click="openModel(3)"></i>
-      </p>
-      <p>
         2021TCL创新大赛大咖公开课内容提纲-营运
         <i class="iconfont icon-xiazai1 download_btn"
                 @click="openModel(4)"></i>
