@@ -56,7 +56,7 @@
         </div>
       </div> -->
       <div class="submit_item">
-        <div class="submit_left flex_center">作品附件</div>
+        <div class="submit_left flex_center">作品要求</div>
         <div class="submit_center">
           <div class="center_left">
             <div class="tip_item">敬请期待</div>
@@ -73,8 +73,9 @@
           </div> -->
         </div>
         <div class="submit_right flex_center">
-          <PublicButton @clickHandle="clickUploadBtn('2')">上传</PublicButton>
-          <p>(支持格式PNG/PDF/WORD等)</p>
+          <!-- <PublicButton @clickHandle="clickUploadBtn('2')">上传</PublicButton> -->
+          <button class="btn" @click="clickUploadBtn('2')">上传</button>
+          <p>支持格式：PNG/PDF/WORD等</p>
           <input type="file" v-show="false" :multiple="true" ref="file2" @change="fileChange2">
         </div>
       </div>
@@ -90,11 +91,10 @@
 <script>
 import { mapActions } from 'vuex'
 import PublicTitle from '@/components/public_title.vue'
-import PublicButton from '@/components/public_button.vue'
+// import PublicButton from '@/components/public_button.vue'
 export default {
   components: {
-    PublicTitle,
-    PublicButton
+    PublicTitle
   },
   data () {
     return {
@@ -234,25 +234,39 @@ export default {
     .submit_item {
       display: flex;
       border: 1px solid #333;
+      border-radius: 10px;
+      min-height: 200px;
       .submit_left,
       .submit_right {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        width: 20%;
         // padding: 0 20px;
         color: #333;
+        .btn {
+          font-size: 16px;
+          color: #fff;
+          background-color: #48B7FF;
+          padding: 5px 40px;
+          border-radius: 5px;
+          border: 0;
+          margin-bottom: 4px;
+        }
       }
       .submit_right {
-        font-size: 12px;
+        width: 30%;
+        font-size: 14px;
       }
       .submit_left {
-        border-right: 1px solid #ddd;
+        border-right: 1px solid #333;
+        font-size: 20px;
+        font-weight: bold;
+        width: 20%;
       }
       .submit_center {
         display: flex;
-        width: 60%;
+        width: 50%;
         .tip_item {
           line-height: 28px;
           &.title {
@@ -260,10 +274,13 @@ export default {
           }
         }
         .center_left {
+          display: flex;
+          align-items: center;
+          padding: 10px;
           flex-grow: 1;
-          padding: 100px;
           color: #333;
           width: 320px;
+          font-size: 16px;
         }
         // .center_right {
         //   flex-shrink: 0;
@@ -273,7 +290,7 @@ export default {
         //   padding: 20px;
         //   width: 320px;
         //   height: 100%;
-        //   border-left: 1px solid #ddd;
+        //   border-left: 1px solid #333;
         //   .file_item {
         //     width: 100%;
         //     span {
@@ -300,8 +317,7 @@ export default {
         // }
       }
       .submit_right {
-        width: 20%;
-        border-left: 1px solid #ddd;
+        border-left: 1px solid #333;
         .del_btn {
           user-select: none;
           cursor: pointer;
