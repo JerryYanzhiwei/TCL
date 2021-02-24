@@ -151,12 +151,10 @@
         <i class="iconfont icon-xiazai1 download_btn"
                 @click="download(1)"></i>
       </p>
-      <!-- <p>
-        2021TCL创新大赛大咖公开课内容提纲-营运
-        <i class="iconfont icon-xiazai1 download_btn"
-                @click="openModel(4)"></i>
+      <p @click="openLink('https://grouplens.org/datasets/movielens/10m/')">
+        大数据挖掘和算法题目Movielen10MB的数据
       </p>
-      <p>
+      <!-- <p>
         2021TCL创新大赛赛事资料——航空
         <i class="iconfont icon-xiazai1 download_btn"
                 @click="openModel(5)"></i>
@@ -264,6 +262,10 @@ export default {
       this.checked = false
       this.attachmentId = attachmentId
       this.dialogVisible = true
+    },
+    // 打开页面
+    openLink (src) {
+      window.open(src)
     },
     // 下载附件
     async download (attachmentId) {
