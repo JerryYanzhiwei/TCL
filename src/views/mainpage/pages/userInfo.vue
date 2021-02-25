@@ -125,14 +125,14 @@
       </div>
     </div>
     <PublicTitle title="赛题详情下载"/>
-    <div class="user_contain ops_contain">
-      <p class="tips_import">即将揭秘，敬请期待</p>
-      <!-- <p>
-        包装类课题介绍
-        <i class="iconfont icon-xiazai1 download_btn"
-                @click="download(0)"></i>
-      </p>
+    <div class="user_contain ops_contain pading_contain">
+      <!-- <p class="tips_import">即将揭秘，敬请期待</p> -->
       <p>
+        2021年高校科创节大赛命题
+        <i class="iconfont icon-xiazai1 download_btn"
+                @click="download(2)"></i>
+      </p>
+      <!-- <p>
         物流类课题介绍
         <i class="iconfont icon-xiazai1 download_btn"
                 @click="download(1)"></i>
