@@ -1,6 +1,6 @@
 <template>
   <!-- 作品提交 -->
-  <div class="works_submit_container">
+  <div v-loading="loading" class="works_submit_container">
     <PublicTitle title="作品提交" color="#fff" />
     <div class="submit_container">
       <!-- <div class="submit_item">
@@ -110,7 +110,8 @@ export default {
       file1: [],
       // 作品附件
       file2: [],
-      processTxt: ''
+      processTxt: '',
+      loading: false
     }
   },
   mounted () {
@@ -136,10 +137,12 @@ export default {
         const form = new FormData()
         form.append('attachmentTypeEnum', 'OPUS_INSTRUCTION_BOOK')
         form.append('multipartFile', file)
+        this.loading = true
         const res = await this.POST_FILE_UPLOAD(form)
         console.log('res:', res)
         if (res.result === '0' && res.data) {
           this.getData()
+          this.loading = false
           console.log('作品说明书上传成功:', res.data)
         }
       } catch (e) {
@@ -155,10 +158,12 @@ export default {
         const form = new FormData()
         form.append('attachmentTypeEnum', 'OPUS_INTRODUCE')
         form.append('multipartFile', file)
+        this.loading = true
         const res = await this.POST_FILE_UPLOAD(form)
         console.log('res:', res)
         if (res.result === '0' && res.data) {
           this.getData()
+          this.loading = false
           console.log('作品介绍上传成功:', res.data)
         }
       } catch (e) {
@@ -176,10 +181,12 @@ export default {
         files.forEach(file => {
           form.append('multipartFile', file)
         })
+        this.loading = true
         const res = await this.POST_FILE_UPLOAD(form)
         console.log('res:', res)
         if (res.result === '0' && res.data) {
           this.getData()
+          this.loading = false
           console.log('作品附件上传成功:', res.data)
         }
       } catch (e) {

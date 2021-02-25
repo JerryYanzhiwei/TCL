@@ -1,5 +1,5 @@
 <template>
-  <div class="userInfo_container">
+  <div v-loading="loading" class="userInfo_container">
     <PublicTitle title="个人信息"/>
     <div class="user_contain">
         <table border="0" cellspacing="0" cellpadding="0">
@@ -193,6 +193,7 @@ export default {
         grade: '',
         described: ''
       },
+      loading: false,
       // userForm: {
       //   accountId: 2037,
       //   captainFlag: true,
@@ -242,10 +243,12 @@ export default {
       }
       const formData = new FormData()
       formData.append('resumeFile', file)
+      this.loading = true
       const res = await this.PUT_RESUME(formData)
       if (res.result === '0') {
         this.fileName = file.name
         this.$message.success(res.msg)
+        this.loading = false
         this.$refs.file0.value = ''
       }
     },
