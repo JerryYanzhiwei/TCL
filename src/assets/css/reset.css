@@ -115,8 +115,8 @@ input[type="number"]{
   -moz-appearance: textfield;
 }
 .el-pagination .btn-next, .el-pagination .btn-prev {
-  color: #fff;
+  color: #333;
 }
 .el-pagination {
-  color: #fff;
+  color: #333;
 }
