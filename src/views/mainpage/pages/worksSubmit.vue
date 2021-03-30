@@ -143,9 +143,11 @@ export default {
         if (res.result === '0' && res.data) {
           this.getData()
           this.loading = false
+          this.$message.success('上传成功')
           console.log('作品说明书上传成功:', res.data)
         }
       } catch (e) {
+        this.$message.error('上传失败')
         console.log(e)
       }
       const dom = this.$refs.file0
@@ -164,9 +166,11 @@ export default {
         if (res.result === '0' && res.data) {
           this.getData()
           this.loading = false
+          this.$message.success('上传成功')
           console.log('作品介绍上传成功:', res.data)
         }
       } catch (e) {
+        this.$message.error('上传失败')
         console.log(e)
       }
       const dom = this.$refs.file1
@@ -187,9 +191,11 @@ export default {
         if (res.result === '0' && res.data) {
           this.getData()
           this.loading = false
+          this.$message.success('上传成功')
           console.log('作品附件上传成功:', res.data)
         }
       } catch (e) {
+        this.$message.error('上传失败')
         console.log(e)
       }
       const dom = this.$refs.file2
