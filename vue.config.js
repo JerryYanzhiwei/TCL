@@ -1,5 +1,4 @@
 const path = require('path')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const resolve = dir => {
   return path.join(__dirname, dir)
@@ -26,26 +25,11 @@ module.exports = {
     extract: true,
     loaderOptions: {
       sass: {
-        prependData: `@import "@/assets/css/global.scss";`
+        prependData: '@import "@/assets/css/global.scss";'
       }
     }
   },
   devServer: {
     port: 8080 // 端口
-  },
-  configureWebpack: {
-    optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          uglifyOptions: {
-            compress: {
-              drop_console: false,//console
-              drop_debugger: false,
-              pure_funcs: ['console.log']//移除console
-            }
-          }
-        })
-      ]
-    }
   }
 }

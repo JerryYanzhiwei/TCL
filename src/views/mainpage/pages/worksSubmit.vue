@@ -80,8 +80,19 @@
         </div>
         <div class="submit_right flex_center">
           <!-- <PublicButton @clickHandle="clickUploadBtn('2')">上传</PublicButton> -->
-          <button class="btn" @click="clickUploadBtn('2')">上传</button>
-          <p>支持格式：PNG/PDF/WORD等</p>
+          <template v-if="file2.length">
+            <div class="file_item"
+              v-for="(item, index) in file2"
+              :key="index">
+              <span>{{item.attachmentFileName}}</span>
+              <span class="clickable" @click="download(item.attachmentId)">下载</span>
+              <span class="clickable" @click="clickUploadBtn('2')">重新上传</span>
+            </div>
+          </template>
+          <template v-if="!file2.length">
+            <button class="btn" @click="clickUploadBtn('2')">上传</button>
+            <p>支持格式：PNG/PDF/WORD等</p>
+          </template>
           <input type="file" v-show="false" :multiple="true" ref="file2" @change="fileChange2">
         </div>
       </div>
@@ -188,12 +199,10 @@ export default {
         this.loading = true
         const res = await this.POST_FILE_UPLOAD(form)
         console.log('res:', res)
-        if (res.result === '0' && res.data) {
-          this.getData()
-          this.loading = false
-          this.$message.success('上传成功')
-          console.log('作品附件上传成功:', res.data)
-        }
+        this.$message.success('上传成功')
+        this.getData()
+        this.loading = false
+        console.log('作品附件上传成功:', res.data)
       } catch (e) {
         this.$message.error('上传失败')
         console.log(e)
@@ -225,6 +234,7 @@ export default {
             const key = `file${type === 0 ? '' : type === 1 ? '1' : '2'}`
             type === 2 ? this[key].push(file) : (this[key] = [file])
           })
+          console.log(this.file2, 'file2')
         }
       } catch (e) {}
     }
@@ -242,6 +252,16 @@ export default {
   border-radius: .1rem;
   background-color: #fff;
   padding: 0 20px;
+  .file_item {
+    color: #333;
+    cursor: pointer;
+  }
+  .clickable {
+    color: #48b7ff;
+    font-size: 12px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
   .flex_center {
     display: flex;
     justify-content: center;
