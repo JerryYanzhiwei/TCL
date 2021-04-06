@@ -93,7 +93,7 @@
             <button class="btn" @click="clickUploadBtn('2')">上传</button>
             <p>支持格式：PNG/PDF/WORD等</p>
           </template>
-          <input type="file" v-show="false" :multiple="true" ref="file2" @change="fileChange2">
+          <input type="file" v-show="false" :multiple="false" ref="file2" @change="fileChange2">
         </div>
       </div>
     </div>
