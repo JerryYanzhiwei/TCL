@@ -100,7 +100,8 @@
     <PublicTitle title="作品进度" color="#fff" />
     <div class="current_progress">
       <span class="progress">当前进度</span>
-      <span class="bold process">{{processTxt}}</span>
+      <!-- <span class="bold process">{{processTxt}}</span> -->
+      <span class="bold process">评审中</span>
     </div>
   </div>
 </template>
