@@ -86,7 +86,7 @@
               :key="index">
               <span>{{item.attachmentFileName}}</span>
               <span class="clickable" @click="download(item.attachmentId)">下载</span>
-              <span class="clickable" @click="clickUploadBtn('2')">重新上传</span>
+              <!-- <span class="clickable" @click="clickUploadBtn('2')">重新上传</span> -->
             </div>
           </template>
           <template v-if="!file2.length">

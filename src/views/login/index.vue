@@ -188,7 +188,7 @@
         </el-form>
       </div>
       <div class="btn_contain">
-        <el-button class="register_btn" @click="submitRegistry" size="mini">注册</el-button>
+        <el-button disabled class="register_btn" @click="submitRegistry" size="mini">注册</el-button>
       </div>
     </div>
     <!-- 抽奖 -->
