@@ -31,8 +31,7 @@
         <el-button class="btn_box" v-if="!loginType" @click="passwordLogin">登录</el-button>
         <el-button class="btn_box" v-if="loginType" @click="codeLogin">登录</el-button>
         <div class="operation_box">
-          <span @click="isLogin = false"></span>
-          <!-- <span @click="isLogin = false">注册</span> -->
+          <span @click="isLogin = false">注册</span>
           <span @click="changeLoginType">
             {{
               !loginType ? '验证码登录' : '密码登录'
@@ -188,7 +187,7 @@
         </el-form>
       </div>
       <div class="btn_contain">
-        <el-button disabled class="register_btn" @click="submitRegistry" size="mini">注册</el-button>
+        <el-button class="register_btn" @click="submitRegistry" size="mini">注册</el-button>
       </div>
     </div>
     <!-- 抽奖 -->
