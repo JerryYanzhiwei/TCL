@@ -79,14 +79,14 @@
           </div> -->
         </div>
         <div class="submit_right flex_center">
-          <!-- <PublicButton @clickHandle="clickUploadBtn('2')">上传</PublicButton> -->
+          <PublicButton @clickHandle="clickUploadBtn('2')">上传</PublicButton>
           <template v-if="file2.length">
             <div class="file_item"
               v-for="(item, index) in file2"
               :key="index">
               <span>{{item.attachmentFileName}}</span>
               <span class="clickable" @click="download(item.attachmentId)">下载</span>
-              <!-- <span class="clickable" @click="clickUploadBtn('2')">重新上传</span> -->
+              <span class="clickable" @click="clickUploadBtn('2')">重新上传</span>
             </div>
           </template>
           <template v-if="!file2.length">
